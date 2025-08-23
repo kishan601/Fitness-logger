@@ -1,0 +1,191 @@
+PS D:\GitHub\fit-track> git init
+Reinitialized existing Git repository in D:/GitHub/fit-track/.git/
+PS D:\GitHub\fit-track> git remote add origin https://github.com/kishan601/fit-track.git 
+PS D:\GitHub\fit-track> git remote -v
+origin  https://github.com/kishan601/fit-track.git (fetch)
+origin  https://github.com/kishan601/fit-track.git (push)
+PS D:\GitHub\fit-track> git branch
+* main
+  replit-agent
+PS D:\GitHub\fit-track> git branch
+* main
+  replit-agent
+PS D:\GitHub\fit-track> git branch -d replit-agent
+error: the branch 'replit-agent' is not fully merged
+hint: If you are sure you want to delete it, run 'git branch -D replit-agent'
+hint: Disable this message with "git config set advice.forceDeleteBranch false"
+PS D:\GitHub\fit-track> git branch -D replit-agent
+Deleted branch replit-agent (was 5a3497d).
+PS D:\GitHub\fit-track> git branch
+* main
+PS D:\GitHub\fit-track> git remote -v
+origin  https://github.com/kishan601/fit-track.git (fetch)
+origin  https://github.com/kishan601/fit-track.git (push)
+PS D:\GitHub\fit-track> git add .
+warning: in the working copy of '.gitignore', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/SETUP.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/index.html', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/App.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/add-workout-form.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/exercise-library.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/fitness-goals.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/header.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/recent-activities.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/theme-provider.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/accordion.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/alert-dialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/alert.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/aspect-ratio.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/avatar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/badge.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/breadcrumb.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/button.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/calendar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/carousel.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/chart.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/checkbox.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/collapsible.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/command.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/context-menu.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/dialog.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/drawer.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/dropdown-menu.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/form.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/hover-card.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/input-otp.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/input.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/label.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/menubar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/navigation-menu.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/pagination.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/popover.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/progress.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/radio-group.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/resizable.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/scroll-area.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/select.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/separator.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/sheet.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/sidebar.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/skeleton.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/slider.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/switch.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/table.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/tabs.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/textarea.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/toast.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/toaster.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/toggle-group.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/toggle.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/ui/tooltip.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/components/weekly-progress.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/hooks/use-mobile.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/hooks/use-toast.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/index.css', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/lib/mock-storage.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/lib/queryClient.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/lib/utils.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/main.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/dashboard.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/src/pages/not-found.tsx', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'client/start.sh', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'components.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'drizzle.config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package-lock.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'package.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'postcss.config.js', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'replit.md', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/index.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/routes.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/storage.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'server/vite.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'shared/schema.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tailwind.config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'tsconfig.json', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'vite.config.ts', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of '.local/state/replit/agent/design_reference/0214ba47-8413-48c8-95d4-710217d10877/1239e969-19b2-4eea-a019-7ccd32019d58.html', LF will be replaced by CRLF the next time Git touches it
+PS D:\GitHub\fit-track> git commit -m "initial commit"
+[main e92af59] initial commit
+ 93 files changed, 979 insertions(+), 25517 deletions(-)
+ create mode 100644 .local/state/replit/agent/.agent_state_091fe041980c8c0f55ae8d3c9618c2b6e8f5d48c.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_1206c695fdbde514064c3d8313b51b0d8741888e.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_16365a3fb9f511404b40167af28292d9d233d237.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_17dd664e47725a04f36b9b38c9a58118ae29f180.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_25b4c086e0e96e75fa52a4d8beb2792ac794aba4.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_30559f7f35048c38d4efa3adc10af11531030cd9.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_52543f2d2a58784dc3625735f34f0ffd60a611bb.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_7a84b7b9751a724f6d397a53643dbd6eaaba0ba5.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_9769f5e5b5224fc462efe48ccbf9ab525a34c684.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_c12944137e7ecee7e645593699c517367407308a.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_ee9fc47cb2ead5605dfd0c4b68f771295e166aee.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_fc249f8b2a42b1791a461725b92dd74a94eb9ca0.bin
+ create mode 100644 .local/state/replit/agent/.agent_state_main.bin
+ create mode 100644 .local/state/replit/agent/.latest.json
+ create mode 100644 .local/state/replit/agent/design_reference/0214ba47-8413-48c8-95d4-710217d10877/1239e969-19b2-4eea-a019-7ccd32019d58.html
+ create mode 100644 .local/state/replit/agent/filesystem/filesystem_state.json
+ create mode 100644 .local/state/replit/agent/rapid_build_started
+ create mode 100644 .local/state/replit/agent/rapid_build_success
+ create mode 100644 .local/state/replit/agent/repl_state.bin
+ delete mode 100644 .replit
+ delete mode 100644 VS_CODE_SETUP.md
+ delete mode 100644 attached_assets/README_1755871979486.md
+ delete mode 100644 attached_assets/image_1755873290039.png
+ delete mode 100644 attached_assets/image_1755873425894.png
+ delete mode 100644 attached_assets/image_1755873538853.png
+ delete mode 100644 fit-track/.gitignore
+ delete mode 100644 fit-track/QUICK-START.md
+ delete mode 100644 fit-track/README.md
+ delete mode 100644 fit-track/SETUP.md
+ delete mode 100644 fit-track/package-lock.json
+ delete mode 100644 fit-track/package.json
+ delete mode 100644 fit-track/postcss.config.js
+ delete mode 100644 fit-track/public/favicon.ico
+ delete mode 100644 fit-track/public/index.html
+ delete mode 100644 fit-track/public/manifest.json
+ delete mode 100644 fit-track/public/robots.txt
+ delete mode 100644 fit-track/public/src/App.css
+ delete mode 100644 fit-track/public/src/App.tsx
+ delete mode 100644 fit-track/public/src/components/add-workout-form.tsx
+ delete mode 100644 fit-track/public/src/components/exercise-library.tsx
+ delete mode 100644 fit-track/public/src/components/fitness-goals.tsx
+ delete mode 100644 fit-track/public/src/components/header.tsx
+ delete mode 100644 fit-track/public/src/components/recent-activities.tsx
+ delete mode 100644 fit-track/public/src/components/theme-provider.tsx
+ delete mode 100644 fit-track/public/src/components/ui/badge.tsx
+ delete mode 100644 fit-track/public/src/components/ui/button.tsx
+ delete mode 100644 fit-track/public/src/components/ui/card.tsx
+ delete mode 100644 fit-track/public/src/components/ui/dialog.tsx
+ delete mode 100644 fit-track/public/src/components/ui/dropdown-menu.tsx
+ delete mode 100644 fit-track/public/src/components/ui/form.tsx
+ delete mode 100644 fit-track/public/src/components/ui/input.tsx
+ delete mode 100644 fit-track/public/src/components/ui/label.tsx
+ delete mode 100644 fit-track/public/src/components/ui/progress.tsx
+ delete mode 100644 fit-track/public/src/components/ui/select.tsx
+ delete mode 100644 fit-track/public/src/components/ui/separator.tsx
+ delete mode 100644 fit-track/public/src/components/ui/switch.tsx
+ delete mode 100644 fit-track/public/src/components/ui/tabs.tsx
+ delete mode 100644 fit-track/public/src/components/ui/textarea.tsx
+ delete mode 100644 fit-track/public/src/components/ui/toast.tsx
+ delete mode 100644 fit-track/public/src/components/ui/toaster.tsx
+ delete mode 100644 fit-track/public/src/components/ui/tooltip.tsx
+ delete mode 100644 fit-track/public/src/components/weekly-progress.tsx
+ delete mode 100644 fit-track/public/src/data/mockStorage.ts
+ delete mode 100644 fit-track/public/src/hooks/use-mobile.tsx
+ delete mode 100644 fit-track/public/src/hooks/use-theme.tsx
+ delete mode 100644 fit-track/public/src/hooks/use-toast.ts
+ delete mode 100644 fit-track/public/src/index.css
+ delete mode 100644 fit-track/public/src/index.tsx
+ delete mode 100644 fit-track/public/src/lib/queryClient.ts
+ delete mode 100644 fit-track/public/src/lib/utils.ts
+ delete mode 100644 fit-track/public/src/pages/dashboard.tsx
+ delete mode 100644 fit-track/public/src/pages/not-found.tsx
+ delete mode 100644 fit-track/public/src/shared/schema.ts
+ delete mode 100644 fit-track/public/tailwind.config.js
+ delete mode 100644 fit-track/start.bat
+ delete mode 100644 fit-track/start.sh
+ delete mode 100644 fit-track/tailwind.config.js
+ delete mode 100644 fit-track/tsconfig.json
+ delete mode 100644 package.vscode.json
+ delete mode 100644 vite.config.vscode.ts
+PS D:\GitHub\fit-track> 
