@@ -55,7 +55,9 @@ export class MemStorage implements IStorage {
     // Create demo user and sample workouts
     const demoUserId = "demo-user";
     
-    // Sample workouts for demo purposes
+    const now = new Date();
+    
+    // Sample workouts for demo purposes - always within current week
     const sampleWorkouts: Workout[] = [
       {
         id: randomUUID(),
@@ -65,7 +67,7 @@ export class MemStorage implements IStorage {
         calories: 240,
         intensity: "medium",
         notes: "Morning jog in the park",
-        date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // Yesterday
+        date: new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000), // Yesterday
       },
       {
         id: randomUUID(),
@@ -75,7 +77,7 @@ export class MemStorage implements IStorage {
         calories: 135,
         intensity: "low",
         notes: "Relaxing evening session",
-        date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+        date: new Date(now.getTime() - 0.5 * 24 * 60 * 60 * 1000), // 12 hours ago
       },
       {
         id: randomUUID(),
@@ -85,7 +87,17 @@ export class MemStorage implements IStorage {
         calories: 240,
         intensity: "high",
         notes: "Intense workout session",
-        date: new Date(), // Today
+        date: new Date(now.getTime() - 0.1 * 24 * 60 * 60 * 1000), // 2.4 hours ago
+      },
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        exerciseType: "Weight Training",
+        duration: 40,
+        calories: 280,
+        intensity: "high",
+        notes: "Strength training session",
+        date: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
       },
     ];
 
