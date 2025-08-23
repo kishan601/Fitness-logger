@@ -31,8 +31,9 @@ export class MemStorage implements IStorage {
     this.exercises = new Map();
     this.goals = new Map();
     
-    // Seed with popular exercises
+    // Seed with popular exercises and sample data
     this.seedExercises();
+    this.seedSampleData();
   }
 
   private seedExercises() {
@@ -48,6 +49,68 @@ export class MemStorage implements IStorage {
     ];
     
     exercises.forEach(exercise => this.exercises.set(exercise.id, exercise));
+  }
+
+  private seedSampleData() {
+    // Create demo user and sample workouts
+    const demoUserId = "demo-user";
+    
+    // Sample workouts for demo purposes
+    const sampleWorkouts: Workout[] = [
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        exerciseType: "Running",
+        duration: 30,
+        calories: 240,
+        intensity: "medium",
+        notes: "Morning jog in the park",
+        date: new Date(Date.now() - 1 * 24 * 60 * 60 * 1000), // Yesterday
+      },
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        exerciseType: "Yoga",
+        duration: 45,
+        calories: 135,
+        intensity: "low",
+        notes: "Relaxing evening session",
+        date: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+      },
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        exerciseType: "HIIT",
+        duration: 20,
+        calories: 240,
+        intensity: "high",
+        notes: "Intense workout session",
+        date: new Date(), // Today
+      },
+    ];
+
+    // Sample goals
+    const sampleGoals: Goal[] = [
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        type: "daily_calories",
+        target: 500,
+        current: 240,
+        date: new Date(),
+      },
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        type: "weekly_workouts",
+        target: 5,
+        current: 3,
+        date: new Date(),
+      },
+    ];
+
+    sampleWorkouts.forEach(workout => this.workouts.set(workout.id, workout));
+    sampleGoals.forEach(goal => this.goals.set(goal.id, goal));
   }
 
   async getUser(id: string): Promise<User | undefined> {
