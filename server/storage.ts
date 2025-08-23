@@ -65,7 +65,7 @@ export class MemStorage implements IStorage {
     startOfWeek.setDate(now.getDate() - daysFromMonday);
     startOfWeek.setHours(0, 0, 0, 0);
     
-    // Sample workouts for demo purposes - distributed across current week
+    // Sample workouts for demo purposes - distributed across current week + TODAY
     const sampleWorkouts: Workout[] = [
       {
         id: randomUUID(),
@@ -106,6 +106,17 @@ export class MemStorage implements IStorage {
         intensity: "high",
         notes: "Strength training session",
         date: new Date(startOfWeek.getTime() + 0 * 24 * 60 * 60 * 1000), // Monday
+      },
+      // Add TODAY's workout so stats show up
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        exerciseType: "Cycling",
+        duration: 25,
+        calories: 180,
+        intensity: "medium",
+        notes: "Today's cycling session",
+        date: new Date(now.getTime() - 2 * 60 * 60 * 1000), // 2 hours ago (today)
       },
     ];
 

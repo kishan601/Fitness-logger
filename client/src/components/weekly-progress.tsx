@@ -26,8 +26,14 @@ export function WeeklyProgress() {
 
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const today = new Date();
+    
+    // Match the backend calculation exactly
+    const currentDay = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const daysFromMonday = currentDay === 0 ? 6 : currentDay - 1; // Sunday should be 6 days from Monday
+    
     const startOfWeek = new Date(today);
-    startOfWeek.setDate(today.getDate() - today.getDay() + 1); // Start from Monday
+    startOfWeek.setDate(today.getDate() - daysFromMonday);
+    startOfWeek.setHours(0, 0, 0, 0);
 
     return days.map((day, index) => {
       const currentDate = new Date(startOfWeek);
@@ -35,7 +41,13 @@ export function WeeklyProgress() {
       
       const dayWorkouts = weeklyWorkouts.filter(workout => {
         const workoutDate = new Date(workout.date);
-        return workoutDate.toDateString() === currentDate.toDateString();
+        const workoutDateString = workoutDate.toDateString();
+        const currentDateString = currentDate.toDateString();
+        
+        // Debug: log the comparison for troubleshooting
+        console.log(`Day ${day}: Comparing workout ${workoutDateString} with ${currentDateString}`);
+        
+        return workoutDateString === currentDateString;
       });
 
       const totalCalories = dayWorkouts.reduce((sum, workout) => sum + workout.calories, 0);
