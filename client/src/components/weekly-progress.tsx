@@ -129,11 +129,11 @@ export function WeeklyProgress() {
       </div>
 
       {/* Chart Area */}
-      <div className="h-72 relative" data-testid="weekly-progress-chart">
-        <div className="absolute inset-0 flex items-end justify-between px-4 pb-20">
+      <div className="h-96 relative" data-testid="weekly-progress-chart">
+        <div className="absolute top-0 left-0 right-0 bottom-24 flex items-end justify-between px-4">
           {weeklyData.map((day, index) => (
-            <div key={day.day} className="flex flex-col items-center space-y-2 flex-1">
-              <div className="w-full max-w-16 h-48 bg-slate-200 dark:bg-slate-700 rounded-lg relative overflow-hidden">
+            <div key={day.day} className="flex flex-col items-center flex-1">
+              <div className="w-full max-w-16 h-40 bg-slate-200 dark:bg-slate-700 rounded-lg relative overflow-hidden mb-3">
                 <div
                   className={`bg-gradient-to-t ${day.color} rounded-lg transition-all duration-1000 ease-out hover:opacity-80 hover:scale-105 transform`}
                   style={{
@@ -144,6 +144,14 @@ export function WeeklyProgress() {
                   data-testid={`chart-bar-${day.day.toLowerCase()}`}
                 />
               </div>
+            </div>
+          ))}
+        </div>
+        
+        {/* Labels positioned absolutely at bottom */}
+        <div className="absolute bottom-0 left-0 right-0 flex justify-between px-4">
+          {weeklyData.map((day, index) => (
+            <div key={`label-${day.day}`} className="flex flex-col items-center space-y-1 flex-1">
               <div className={`text-sm font-semibold ${day.day === 'Fri' && new Date().getDay() === 5 ? 'text-coral-500 dark:text-coral-400 font-bold' : 'text-slate-600 dark:text-slate-400'}`}>
                 {day.day}
               </div>
