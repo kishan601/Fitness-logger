@@ -8,6 +8,8 @@ interface WeeklyData {
   day: string;
   calories: number;
   workouts: number;
+  duration: number;
+  activityScore: number;
   color: string;
 }
 
@@ -63,17 +65,26 @@ export function WeeklyProgress() {
         }
       }
 
+      // Calculate activity score combining calories and duration
+      const totalDuration = dayWorkouts.reduce((sum, workout) => sum + workout.duration, 0);
+      const activityScore = totalCalories * 0.4 + totalDuration * 2 * 0.6; // Duration weighted more heavily
+
       return {
         day,
         calories: totalCalories,
         workouts: workoutCount,
+        duration: totalDuration,
+        activityScore,
         color,
       };
     });
   };
 
   const weeklyData = getWeeklyData();
-  const maxCalories = Math.max(...weeklyData.map(d => d.calories), 50); // Lower minimum for better scaling
+  
+  // Calculate dynamic scaling based on actual user data
+  const activityScores = weeklyData.map(day => day.activityScore);
+  const maxActivityScore = Math.max(...activityScores, 50); // Minimum of 50 for better scaling
 
   if (isLoading) {
     return (
@@ -126,8 +137,8 @@ export function WeeklyProgress() {
                 <div
                   className={`bg-gradient-to-t ${day.color} rounded-lg transition-all duration-1000 ease-out hover:opacity-80 hover:scale-105 transform`}
                   style={{
-                    height: `${Math.max((day.calories / maxCalories) * 100, day.calories > 0 ? 25 : 0)}%`,
-                    minHeight: day.calories > 0 ? '32px' : '0px',
+                    height: `${Math.max((day.activityScore / maxActivityScore) * 100, day.activityScore > 0 ? 20 : 0)}%`,
+                    minHeight: day.activityScore > 0 ? '24px' : '0px',
                     animationDelay: `${index * 0.1}s`,
                   }}
                   data-testid={`chart-bar-${day.day.toLowerCase()}`}
@@ -139,9 +150,9 @@ export function WeeklyProgress() {
               <div className="text-sm font-medium text-slate-700 dark:text-slate-300">
                 {day.calories} cal
               </div>
-              {day.workouts > 0 && (
+              {day.duration > 0 && (
                 <div className="text-xs text-slate-500 dark:text-slate-500">
-                  {day.workouts} workout{day.workouts > 1 ? 's' : ''}
+                  {day.duration}min • {day.workouts} workout{day.workouts > 1 ? 's' : ''}
                 </div>
               )}
             </div>
