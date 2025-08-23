@@ -10,8 +10,8 @@ export function Header() {
   };
 
   return (
-    <header className="bg-white/80 dark:bg-card/80 backdrop-blur-lg border-b border-border sticky top-0 z-50 transition-all duration-300">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <header className="bg-background/80 backdrop-blur-lg border-b border-border sticky top-0 z-50 transition-all duration-300">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg: px-8">
         <div className="flex justify-between items-center h-16">
           {/* Logo and Title */}
           <div className="flex items-center space-x-3 animate-fade-in">
@@ -65,8 +65,14 @@ export function Header() {
               className="p-2 rounded-lg bg-accent text-accent-foreground hover:bg-accent/80 transition-all duration-200 transform hover:scale-105 group"
               data-testid="button-theme-toggle"
             >
-              <Moon className="dark:hidden text-lg group-hover:rotate-12 transition-transform" size={18} />
-              <Sun className="hidden dark:inline text-lg group-hover:rotate-12 transition-transform text-yellow-400" size={18} />
+              <Moon
+                className="dark:hidden text-lg group-hover:rotate-12 transition-transform"
+                size={18}
+              />
+              <Sun
+                className="hidden dark:inline text-lg group-hover:rotate-12 transition-transform text-yellow-400"
+                size={18}
+              />
             </Button>
             <div className="md:hidden">
               <Button
