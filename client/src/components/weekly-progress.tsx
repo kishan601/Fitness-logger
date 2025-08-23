@@ -44,8 +44,6 @@ export function WeeklyProgress() {
         const workoutDateString = workoutDate.toDateString();
         const currentDateString = currentDate.toDateString();
         
-        // Debug: log the comparison for troubleshooting
-        console.log(`Day ${day}: Comparing workout ${workoutDateString} with ${currentDateString}`);
         
         return workoutDateString === currentDateString;
       });

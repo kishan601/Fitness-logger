@@ -50,8 +50,12 @@ export default function Dashboard() {
 
     const todayWorkouts = workouts.filter(workout => {
       const workoutDate = new Date(workout.date);
-      return workoutDate >= todayStart && workoutDate < todayEnd;
+      // Check if workout is today using date string comparison (timezone-safe)
+      const workoutDateString = workoutDate.toDateString();
+      const todayDateString = today.toDateString();
+      return workoutDateString === todayDateString;
     });
+
 
     return {
       workouts: todayWorkouts.length,

@@ -107,7 +107,7 @@ export class MemStorage implements IStorage {
         notes: "Strength training session",
         date: new Date(startOfWeek.getTime() + 0 * 24 * 60 * 60 * 1000), // Monday
       },
-      // Add TODAY's workout so stats show up
+      // Add TODAY's workout so stats show up (use local timezone)
       {
         id: randomUUID(),
         userId: demoUserId,
@@ -116,7 +116,18 @@ export class MemStorage implements IStorage {
         calories: 180,
         intensity: "medium",
         notes: "Today's cycling session",
-        date: new Date(now.getTime() - 2 * 60 * 60 * 1000), // 2 hours ago (today)
+        date: new Date(), // Right now in local timezone
+      },
+      // Add another workout earlier today
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        exerciseType: "Swimming",
+        duration: 35,
+        calories: 280,
+        intensity: "medium",
+        notes: "Morning swim",
+        date: new Date(Date.now() - 4 * 60 * 60 * 1000), // 4 hours ago
       },
     ];
 

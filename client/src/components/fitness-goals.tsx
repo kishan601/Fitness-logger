@@ -65,7 +65,10 @@ export function FitnessGoals() {
 
     const todayWorkouts = workouts.filter(workout => {
       const workoutDate = new Date(workout.date);
-      return workoutDate >= todayStart && workoutDate < todayEnd;
+      // Check if workout is today using date string comparison (timezone-safe)
+      const workoutDateString = workoutDate.toDateString();
+      const todayDateString = today.toDateString();
+      return workoutDateString === todayDateString;
     });
 
     const totalCalories = todayWorkouts.reduce((sum, workout) => sum + workout.calories, 0);
