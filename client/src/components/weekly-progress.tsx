@@ -118,27 +118,32 @@ export function WeeklyProgress() {
       </div>
 
       {/* Chart Area */}
-      <div className="h-64 relative" data-testid="weekly-progress-chart">
-        <div className="absolute inset-0 flex items-end justify-between px-2">
+      <div className="h-80 relative" data-testid="weekly-progress-chart">
+        <div className="absolute inset-0 flex items-end justify-between px-4">
           {weeklyData.map((day, index) => (
-            <div key={day.day} className="flex flex-col items-center space-y-2 flex-1">
-              <div className="w-full max-w-8 bg-slate-200 dark:bg-slate-700 rounded-t-lg relative overflow-hidden">
+            <div key={day.day} className="flex flex-col items-center space-y-3 flex-1">
+              <div className="w-full max-w-16 h-64 bg-slate-200 dark:bg-slate-700 rounded-lg relative overflow-hidden">
                 <div
-                  className={`bg-gradient-to-t ${day.color} rounded-t-lg transition-all duration-1000 ease-out hover:opacity-80`}
+                  className={`bg-gradient-to-t ${day.color} rounded-lg transition-all duration-1000 ease-out hover:opacity-80 hover:scale-105 transform`}
                   style={{
-                    height: `${(day.calories / maxCalories) * 100}%`,
-                    minHeight: day.calories > 0 ? '8px' : '0px',
+                    height: `${Math.max((day.calories / maxCalories) * 100, day.calories > 0 ? 15 : 0)}%`,
+                    minHeight: day.calories > 0 ? '16px' : '0px',
                     animationDelay: `${index * 0.1}s`,
                   }}
                   data-testid={`chart-bar-${day.day.toLowerCase()}`}
                 />
               </div>
-              <div className={`text-xs font-medium ${day.day === 'Sun' && new Date().getDay() === 0 ? 'text-coral-500 dark:text-coral-400 font-bold' : 'text-slate-600 dark:text-slate-400'}`}>
+              <div className={`text-sm font-semibold ${day.day === 'Fri' && new Date().getDay() === 5 ? 'text-coral-500 dark:text-coral-400 font-bold' : 'text-slate-600 dark:text-slate-400'}`}>
                 {day.day}
               </div>
-              <div className="text-xs text-slate-500 dark:text-slate-500">
-                {day.calories}
+              <div className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                {day.calories} cal
               </div>
+              {day.workouts > 0 && (
+                <div className="text-xs text-slate-500 dark:text-slate-500">
+                  {day.workouts} workout{day.workouts > 1 ? 's' : ''}
+                </div>
+              )}
             </div>
           ))}
         </div>
