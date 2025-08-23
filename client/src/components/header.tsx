@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useTheme } from "./theme-provider";
 import { Moon, Sun, Menu, X, BarChart3, Activity, Trophy } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Tooltip, TooltipContent, TooltipTrigger } from "@/components/ui/tooltip";
+import { Badge } from "@/components/ui/badge";
 
 export function Header() {
   const { theme, setTheme } = useTheme();
@@ -40,22 +42,42 @@ export function Header() {
               <BarChart3 className="mr-2" size={16} />
               Dashboard
             </Button>
-            <Button
-              variant="ghost"
-              className="px-4 py-2 rounded-lg text-muted-foreground font-medium transition-all duration-200 hover:bg-accent hover:text-accent-foreground"
-              data-testid="nav-workouts"
-            >
-              <Activity className="mr-2" size={16} />
-              Workouts
-            </Button>
-            <Button
-              variant="ghost"
-              className="px-4 py-2 rounded-lg text-muted-foreground font-medium transition-all duration-200 hover:bg-accent hover:text-accent-foreground"
-              data-testid="nav-progress"
-            >
-              <Trophy className="mr-2" size={16} />
-              Progress
-            </Button>
+            
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="px-4 py-2 rounded-lg text-muted-foreground font-medium transition-all duration-200 hover:bg-accent hover:text-accent-foreground cursor-not-allowed opacity-75"
+                  data-testid="nav-workouts"
+                  disabled
+                >
+                  <Activity className="mr-2" size={16} />
+                  Workouts
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-white/20 dark:border-gray-800/20 shadow-xl">
+                <p className="font-medium">🚧 Coming Soon</p>
+                <p className="text-xs text-muted-foreground">Detailed workout tracking</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="px-4 py-2 rounded-lg text-muted-foreground font-medium transition-all duration-200 hover:bg-accent hover:text-accent-foreground cursor-not-allowed opacity-75"
+                  data-testid="nav-progress"
+                  disabled
+                >
+                  <Trophy className="mr-2" size={16} />
+                  Progress
+                </Button>
+              </TooltipTrigger>
+              <TooltipContent className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-md border border-white/20 dark:border-gray-800/20 shadow-xl">
+                <p className="font-medium">🚧 Coming Soon</p>
+                <p className="text-xs text-muted-foreground">Advanced analytics & insights</p>
+              </TooltipContent>
+            </Tooltip>
           </nav>
 
           {/* Theme Toggle */}
@@ -103,24 +125,26 @@ export function Header() {
                 <BarChart3 className="mr-3" size={18} />
                 Dashboard
               </Button>
-              <Button
-                variant="ghost"
-                className="w-full justify-start px-4 py-3 rounded-lg text-muted-foreground font-medium transition-all duration-200 hover:bg-white/50 dark:hover:bg-gray-800/50 hover:text-foreground"
-                data-testid="mobile-nav-workouts"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Activity className="mr-3" size={18} />
-                Workouts
-              </Button>
-              <Button
-                variant="ghost"
-                className="w-full justify-start px-4 py-3 rounded-lg text-muted-foreground font-medium transition-all duration-200 hover:bg-white/50 dark:hover:bg-gray-800/50 hover:text-foreground"
-                data-testid="mobile-nav-progress"
-                onClick={() => setIsMobileMenuOpen(false)}
-              >
-                <Trophy className="mr-3" size={18} />
-                Progress
-              </Button>
+              
+              <div className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-slate-50/50 dark:bg-slate-800/50 opacity-75">
+                <div className="flex items-center">
+                  <Activity className="mr-3 text-muted-foreground" size={18} />
+                  <span className="text-muted-foreground font-medium">Workouts</span>
+                </div>
+                <Badge variant="secondary" className="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200 text-xs px-2 py-1">
+                  Coming Soon
+                </Badge>
+              </div>
+              
+              <div className="w-full flex items-center justify-between px-4 py-3 rounded-lg bg-slate-50/50 dark:bg-slate-800/50 opacity-75">
+                <div className="flex items-center">
+                  <Trophy className="mr-3 text-muted-foreground" size={18} />
+                  <span className="text-muted-foreground font-medium">Progress</span>
+                </div>
+                <Badge variant="secondary" className="bg-yellow-100 dark:bg-yellow-900/30 text-yellow-800 dark:text-yellow-200 text-xs px-2 py-1">
+                  Coming Soon
+                </Badge>
+              </div>
             </div>
           </div>
         )}
