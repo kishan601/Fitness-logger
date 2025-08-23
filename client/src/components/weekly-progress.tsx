@@ -133,7 +133,7 @@ export function WeeklyProgress() {
         <div className="absolute top-0 left-0 right-0 bottom-24 flex items-end justify-between px-4">
           {weeklyData.map((day, index) => (
             <div key={day.day} className="flex flex-col items-center flex-1">
-              <div className="w-full max-w-16 h-40 bg-slate-200 dark:bg-slate-700 rounded-lg relative overflow-hidden mb-3">
+              <div className="w-full max-w-16 h-48 bg-slate-200 dark:bg-slate-700 rounded-lg relative overflow-hidden mb-3">
                 <div
                   className={`bg-gradient-to-t ${day.color} rounded-lg transition-all duration-1000 ease-out hover:opacity-80 hover:scale-105 transform`}
                   style={{
