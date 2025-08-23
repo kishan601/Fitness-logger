@@ -12,9 +12,12 @@ interface WeeklyData {
 }
 
 export function WeeklyProgress() {
-  const { data: weeklyWorkouts, isLoading, refetch } = useQuery<Workout[]>({
+  const { data: weeklyWorkouts, isLoading, refetch, error } = useQuery<Workout[]>({
     queryKey: ["/api/workouts/weekly"],
+    refetchOnMount: true,
+    refetchOnWindowFocus: true,
   });
+
 
   const getWeeklyData = (): WeeklyData[] => {
     if (!weeklyWorkouts) return [];

@@ -60,7 +60,9 @@ export function AddWorkoutForm() {
       return response.json();
     },
     onSuccess: () => {
-      queryClient.clear(); // Nuclear option - clear all cache
+      // Invalidate specific queries instead of clearing all cache
+      queryClient.invalidateQueries({ queryKey: ["/api/workouts"] });
+      queryClient.invalidateQueries({ queryKey: ["/api/workouts/weekly"] });
       toast({
         title: "Workout Added!",
         description: "Your workout has been successfully logged.",
