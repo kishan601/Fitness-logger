@@ -45,9 +45,16 @@ export async function registerRoutes(app: Express): Promise<Server> {
   app.get("/api/workouts/weekly", async (req, res) => {
     try {
       const userId = "demo-user";
-      const endDate = new Date();
-      const startDate = new Date();
-      startDate.setDate(endDate.getDate() - 7);
+      const today = new Date();
+      
+      // Set to start of Monday in local timezone
+      const startDate = new Date(today);
+      startDate.setDate(today.getDate() - today.getDay() + 1);
+      startDate.setHours(0, 0, 0, 0); // Start of Monday
+      
+      // Set to end of current day (not just current time!)
+      const endDate = new Date(today);
+      endDate.setHours(23, 59, 59, 999); // End of today
       
       const workouts = await storage.getWorkoutsByDateRange(userId, startDate, endDate);
       res.json(workouts);
