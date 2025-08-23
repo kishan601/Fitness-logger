@@ -73,7 +73,7 @@ export function WeeklyProgress() {
   };
 
   const weeklyData = getWeeklyData();
-  const maxCalories = Math.max(...weeklyData.map(d => d.calories), 100);
+  const maxCalories = Math.max(...weeklyData.map(d => d.calories), 50); // Lower minimum for better scaling
 
   if (isLoading) {
     return (
@@ -126,8 +126,8 @@ export function WeeklyProgress() {
                 <div
                   className={`bg-gradient-to-t ${day.color} rounded-lg transition-all duration-1000 ease-out hover:opacity-80 hover:scale-105 transform`}
                   style={{
-                    height: `${Math.max((day.calories / maxCalories) * 100, day.calories > 0 ? 15 : 0)}%`,
-                    minHeight: day.calories > 0 ? '16px' : '0px',
+                    height: `${Math.max((day.calories / maxCalories) * 100, day.calories > 0 ? 25 : 0)}%`,
+                    minHeight: day.calories > 0 ? '32px' : '0px',
                     animationDelay: `${index * 0.1}s`,
                   }}
                   data-testid={`chart-bar-${day.day.toLowerCase()}`}
