@@ -57,7 +57,15 @@ export class MemStorage implements IStorage {
     
     const now = new Date();
     
-    // Sample workouts for demo purposes - always within current week
+    // Calculate current week to ensure all workouts fall within it
+    const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const daysFromMonday = currentDay === 0 ? 6 : currentDay - 1;
+    
+    const startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - daysFromMonday);
+    startOfWeek.setHours(0, 0, 0, 0);
+    
+    // Sample workouts for demo purposes - distributed across current week
     const sampleWorkouts: Workout[] = [
       {
         id: randomUUID(),
@@ -67,7 +75,7 @@ export class MemStorage implements IStorage {
         calories: 240,
         intensity: "medium",
         notes: "Morning jog in the park",
-        date: new Date(now.getTime() - 1 * 24 * 60 * 60 * 1000), // Yesterday
+        date: new Date(startOfWeek.getTime() + 1 * 24 * 60 * 60 * 1000), // Tuesday
       },
       {
         id: randomUUID(),
@@ -77,7 +85,7 @@ export class MemStorage implements IStorage {
         calories: 135,
         intensity: "low",
         notes: "Relaxing evening session",
-        date: new Date(now.getTime() - 0.5 * 24 * 60 * 60 * 1000), // 12 hours ago
+        date: new Date(startOfWeek.getTime() + 3 * 24 * 60 * 60 * 1000), // Thursday
       },
       {
         id: randomUUID(),
@@ -87,7 +95,7 @@ export class MemStorage implements IStorage {
         calories: 240,
         intensity: "high",
         notes: "Intense workout session",
-        date: new Date(now.getTime() - 0.1 * 24 * 60 * 60 * 1000), // 2.4 hours ago
+        date: new Date(startOfWeek.getTime() + 5 * 24 * 60 * 60 * 1000), // Saturday
       },
       {
         id: randomUUID(),
@@ -97,7 +105,7 @@ export class MemStorage implements IStorage {
         calories: 280,
         intensity: "high",
         notes: "Strength training session",
-        date: new Date(now.getTime() - 2 * 24 * 60 * 60 * 1000), // 2 days ago
+        date: new Date(startOfWeek.getTime() + 0 * 24 * 60 * 60 * 1000), // Monday
       },
     ];
 
