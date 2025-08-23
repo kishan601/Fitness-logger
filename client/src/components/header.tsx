@@ -49,7 +49,7 @@ export function Header() {
                   variant="ghost"
                   className="px-4 py-2 rounded-lg text-muted-foreground font-medium transition-all duration-200 hover:bg-accent hover:text-accent-foreground cursor-not-allowed opacity-75"
                   data-testid="nav-workouts"
-                  disabled
+                  onClick={(e) => e.preventDefault()}
                 >
                   <Activity className="mr-2" size={16} />
                   Workouts
@@ -67,7 +67,7 @@ export function Header() {
                   variant="ghost"
                   className="px-4 py-2 rounded-lg text-muted-foreground font-medium transition-all duration-200 hover:bg-accent hover:text-accent-foreground cursor-not-allowed opacity-75"
                   data-testid="nav-progress"
-                  disabled
+                  onClick={(e) => e.preventDefault()}
                 >
                   <Trophy className="mr-2" size={16} />
                   Progress
