@@ -48,20 +48,20 @@ export function WeeklyProgress() {
         switch (primaryType) {
           case "running":
           case "strength":
-            color = "from-coral-500 to-coral-400";
+            color = "from-red-500 to-orange-400";
             break;
           case "cycling":
           case "swimming":
-            color = "from-teal-500 to-teal-400";
+            color = "from-teal-500 to-cyan-400";
             break;
           case "yoga":
-            color = "from-accent to-blue-400";
+            color = "from-purple-500 to-indigo-400";
             break;
           case "hiit":
-            color = "from-success to-green-400";
+            color = "from-green-500 to-emerald-400";
             break;
           default:
-            color = "from-coral-500 to-coral-400";
+            color = "from-blue-500 to-blue-400";
         }
       }
 
