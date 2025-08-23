@@ -129,11 +129,11 @@ export function WeeklyProgress() {
       </div>
 
       {/* Chart Area */}
-      <div className="h-80 relative" data-testid="weekly-progress-chart">
-        <div className="absolute inset-0 flex items-end justify-between px-4">
+      <div className="h-72 relative" data-testid="weekly-progress-chart">
+        <div className="absolute inset-0 flex items-end justify-between px-4 pb-20">
           {weeklyData.map((day, index) => (
-            <div key={day.day} className="flex flex-col items-center space-y-3 flex-1">
-              <div className="w-full max-w-16 h-64 bg-slate-200 dark:bg-slate-700 rounded-lg relative overflow-hidden">
+            <div key={day.day} className="flex flex-col items-center space-y-2 flex-1">
+              <div className="w-full max-w-16 h-48 bg-slate-200 dark:bg-slate-700 rounded-lg relative overflow-hidden">
                 <div
                   className={`bg-gradient-to-t ${day.color} rounded-lg transition-all duration-1000 ease-out hover:opacity-80 hover:scale-105 transform`}
                   style={{
