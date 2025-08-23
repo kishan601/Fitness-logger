@@ -4,15 +4,18 @@ A modern full-stack fitness tracking application built with React, Express.js, a
 
 ## ✨ Features
 
-- **📊 Weekly Progress Charts** - Visual progress tracking with dynamic scaling based on your actual workout data
+- **📊 Weekly Progress Charts** - Visual progress tracking with dynamic scaling and properly spaced bars
 - **💪 Workout Logging** - Log various exercise types (running, strength, yoga, cycling, swimming, HIIT)
-- **📱 Responsive Design** - Beautiful interface that works on desktop and mobile
+- **📱 Responsive Design** - Mobile-first interface with optimized hamburger menu and glassmorphism effects
 - **🌙 Dark/Light Theme** - Switch between themes with smooth transitions
 - **⚡ Real-time Data** - Instant updates with optimistic UI using React Query
-- **✏️ Inline Editing** - Edit workout calories directly in the activity list
-- **🎨 Luxury Design** - Glass morphism effects and gradient styling
+- **✏️ Inline Editing** - Edit workout calories directly in the activity list and personalize your name
+- **🎨 Luxury Design** - Glass morphism effects, gradient styling, and modern visual appeal
 - **📈 Progress Analytics** - Combine calories and duration data for activity scoring
 - **🔄 Beautiful Scrollbars** - Custom-styled scrollbars with hover effects
+- **👤 Personalization** - Editable user name with inline editing functionality
+- **🕐 Live Date & Time** - Real-time current date and time display
+- **📋 Navigation Menu** - Responsive hamburger menu with "Coming Soon" badges for future features
 
 ## 🚀 Tech Stack
 
@@ -71,11 +74,14 @@ A modern full-stack fitness tracking application built with React, Express.js, a
 
 ## 📊 Usage
 
-1. **Add Workouts** - Use the workout form to log your exercises
-2. **View Progress** - Check your weekly progress chart to see visual feedback
-3. **Edit Data** - Click the edit icon next to calories to make quick adjustments
-4. **Switch Themes** - Toggle between light and dark modes
-5. **Track Goals** - Monitor your fitness journey with the activity scoring system
+1. **Personalize Your Dashboard** - Click the edit icon next to your name to customize it
+2. **Add Workouts** - Use the workout form to log your exercises
+3. **View Progress** - Check your weekly progress chart to see visual feedback
+4. **Edit Data** - Click the edit icon next to calories to make quick adjustments
+5. **Switch Themes** - Toggle between light and dark modes
+6. **Navigation** - Use the hamburger menu on mobile to explore upcoming features
+7. **Track Goals** - Monitor your fitness journey with the activity scoring system
+8. **Live Updates** - See real-time date and time in the dashboard header
 
 ## 🏗️ Project Structure
 
@@ -99,11 +105,13 @@ fittrack/
 ## 🎨 Design System
 
 The application features a luxury design system with:
-- **Custom color palette** with blue and coral accent colors
-- **Glass morphism effects** for modern visual appeal
+- **Custom color palette** with blue accent colors and theme-aware styling
+- **Glass morphism effects** for modern visual appeal throughout the interface
 - **Gradient backgrounds** and smooth transitions
 - **Beautiful scrollbars** with hover effects and animations
-- **Responsive layouts** optimized for all screen sizes
+- **Responsive layouts** optimized for all screen sizes with mobile-first approach
+- **Interactive elements** with hover states and micro-interactions
+- **Inline editing** with seamless user experience and focus management
 
 ## 🔧 API Endpoints
 
@@ -126,8 +134,15 @@ This creates optimized builds for both frontend and backend in their respective 
 ### Replit (Recommended)
 This project is optimized for Replit deployment with automatic workflows.
 
+### Railway (Production Ready)
+Successfully deployed on Railway with:
+- Automatic GitHub integration
+- PostgreSQL database hosting
+- Continuous deployment on commits
+- Production-ready configuration
+
 ### Other Platforms
-For deployment on other platforms like Vercel, Railway, or Render, you may need to:
+For deployment on other platforms like Vercel or Render, you may need to:
 1. Configure environment variables
 2. Set up the PostgreSQL database
 3. Adjust build scripts for the specific platform
