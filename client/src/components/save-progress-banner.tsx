@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useForm } from "react-hook-form";
@@ -104,6 +104,9 @@ export function SaveProgressBanner() {
               <Sparkles className="w-5 h-5 text-violet-500" />
               <span>Create Your Account</span>
             </DialogTitle>
+            <DialogDescription>
+              Convert your guest session to a permanent account to save your fitness progress across all devices.
+            </DialogDescription>
           </DialogHeader>
 
           <Form {...form}>
