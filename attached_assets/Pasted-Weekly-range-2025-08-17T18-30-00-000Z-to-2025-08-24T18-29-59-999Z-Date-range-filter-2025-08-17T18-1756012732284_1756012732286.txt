@@ -1,0 +1,35 @@
+Weekly range: 2025-08-17T18:30:00.000Z to 2025-08-24T18:29:59.999Z
+Date range filter: 2025-08-17T18:30:00.000Z to 2025-08-24T18:29:59.999Z
+Workout yoga on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout cycling on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout running on 2025-08-23T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-23T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-23T12:00:00.000Z: INCLUDED
+Found workouts: 7
+10:37:58 AM [express] GET /api/workouts/weekly 200 in 190ms :: [{"exerciseType":"yoga","duration":99,…
+Weekly range: 2025-08-17T18:30:00.000Z to 2025-08-24T18:29:59.999Z
+Date range filter: 2025-08-17T18:30:00.000Z to 2025-08-24T18:29:59.999Z
+Workout yoga on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout cycling on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout running on 2025-08-23T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-23T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-23T12:00:00.000Z: INCLUDED
+Found workouts: 7
+10:43:50 AM [express] GET /api/workouts/weekly 304 in 78ms :: [{"exerciseType":"yoga","duration":99,"…
+10:44:17 AM [express] POST /api/workouts 200 in 12ms :: {"exerciseType":"running","duration":90,"calo…
+10:44:17 AM [express] GET /api/workouts 200 in 3ms :: [{"exerciseType":"yoga","duration":99,"calories…
+Weekly range: 2025-08-17T18:30:00.000Z to 2025-08-24T18:29:59.999Z
+Date range filter: 2025-08-17T18:30:00.000Z to 2025-08-24T18:29:59.999Z
+Workout yoga on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout cycling on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout running on 2025-08-23T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-24T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-23T12:00:00.000Z: INCLUDED
+Workout strength on 2025-08-23T12:00:00.000Z: INCLUDED
+Workout running on 2025-08-23T12:00:00.000Z: INCLUDED
+Found workouts: 8
