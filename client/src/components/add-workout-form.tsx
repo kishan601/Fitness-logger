@@ -64,11 +64,18 @@ export function AddWorkoutForm() {
 
   const addWorkoutMutation = useMutation({
     mutationFn: async (data: WorkoutFormData) => {
-      // Convert date string to Date object for backend
+      // FIXED: Proper date handling that preserves the user's selected date
+      const selectedDate = new Date(data.date);
+      selectedDate.setHours(12, 0, 0, 0); // Set to noon to avoid timezone issues
+      
       const workoutData = {
         ...data,
-        date: new Date(data.date + "T12:00:00.000Z"), // Add time to avoid timezone issues
+        date: selectedDate, // This will now correctly use the user's selected date
       };
+      
+      console.log('Submitting workout with date:', selectedDate.toISOString());
+      console.log('Original form date:', data.date);
+      
       const response = await apiRequest("POST", "/api/workouts", workoutData);
       return response.json();
     },

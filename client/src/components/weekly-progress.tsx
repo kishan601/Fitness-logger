@@ -24,16 +24,20 @@ export function WeeklyProgress() {
   const getWeeklyData = (): WeeklyData[] => {
     if (!weeklyWorkouts) return [];
 
+    console.log('Raw weekly workouts data:', weeklyWorkouts);
+
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const today = new Date();
     
     // Match the backend calculation exactly
     const currentDay = today.getDay(); // 0 = Sunday, 1 = Monday, etc.
-    const daysFromMonday = currentDay === 0 ? 6 : currentDay - 1; // Sunday should be 6 days from Monday
+    const daysFromMonday = currentDay === 0 ? 6 : currentDay - 1;
     
     const startOfWeek = new Date(today);
     startOfWeek.setDate(today.getDate() - daysFromMonday);
     startOfWeek.setHours(0, 0, 0, 0);
+
+    console.log('Frontend calculated week start:', startOfWeek.toISOString());
 
     return days.map((day, index) => {
       const currentDate = new Date(startOfWeek);
@@ -42,12 +46,25 @@ export function WeeklyProgress() {
       const dayWorkouts = weeklyWorkouts.filter(workout => {
         const workoutDate = new Date(workout.date);
         
-        // Normalize both dates to YYYY-MM-DD format for comparison (timezone-safe)
-        const workoutDateOnly = workoutDate.toISOString().split('T')[0];
-        const currentDateOnly = currentDate.toISOString().split('T')[0];
+        // FIXED: Handle timezone properly by comparing dates in UTC
+        const workoutYear = workoutDate.getUTCFullYear();
+        const workoutMonth = workoutDate.getUTCMonth();
+        const workoutDay = workoutDate.getUTCDate();
         
-        return workoutDateOnly === currentDateOnly;
+        const currentYear = currentDate.getFullYear();
+        const currentMonth = currentDate.getMonth();
+        const currentDay = currentDate.getDate();
+        
+        const isMatch = workoutYear === currentYear && 
+                       workoutMonth === currentMonth && 
+                       workoutDay === currentDay;
+        
+        console.log(`${day} ${currentDate.toDateString()}: checking workout ${workout.exerciseType} on ${workoutDate.toISOString()} = ${isMatch}`);
+        
+        return isMatch;
       });
+
+      console.log(`${day}: ${dayWorkouts.length} workouts found`);
 
       const totalCalories = dayWorkouts.reduce((sum, workout) => sum + workout.calories, 0);
       const workoutCount = dayWorkouts.length;
@@ -56,9 +73,10 @@ export function WeeklyProgress() {
       let color = "from-slate-400 to-slate-500";
       if (dayWorkouts.length > 0) {
         const primaryType = dayWorkouts[0].exerciseType;
-        switch (primaryType) {
+        switch (primaryType.toLowerCase()) {
           case "running":
           case "strength":
+          case "weight training":
             color = "from-red-500 to-orange-400";
             break;
           case "cycling":
@@ -93,9 +111,11 @@ export function WeeklyProgress() {
 
   const weeklyData = getWeeklyData();
   
-  // Calculate dynamic scaling based on actual user data
+  // Log the final weekly data for debugging
+  console.log('Final weekly data for chart:', weeklyData);
+  
   const activityScores = weeklyData.map(day => day.activityScore);
-  const maxActivityScore = Math.max(...activityScores, 50); // Minimum of 50 for better scaling
+  const maxActivityScore = Math.max(...activityScores, 50);
 
   if (isLoading) {
     return (
@@ -181,22 +201,44 @@ export function WeeklyProgress() {
         </div>
       </div>
 
+      {/* Summary Stats */}
+      <div className="flex justify-center space-x-4 mt-6 pt-4 border-t border-slate-200 dark:border-slate-700">
+        <div className="text-center">
+          <div className="text-lg font-bold text-slate-900 dark:text-slate-50">
+            {weeklyData.reduce((sum, day) => sum + day.workouts, 0)}
+          </div>
+          <div className="text-xs text-slate-600 dark:text-slate-400">Workouts</div>
+        </div>
+        <div className="text-center">
+          <div className="text-lg font-bold text-slate-900 dark:text-slate-50">
+            {weeklyData.reduce((sum, day) => sum + day.calories, 0)}
+          </div>
+          <div className="text-xs text-slate-600 dark:text-slate-400">Calories</div>
+        </div>
+        <div className="text-center">
+          <div className="text-lg font-bold text-slate-900 dark:text-slate-50">
+            {weeklyData.reduce((sum, day) => sum + day.duration, 0)}
+          </div>
+          <div className="text-xs text-slate-600 dark:text-slate-400">Minutes</div>
+        </div>
+      </div>
+
       {/* Legend */}
-      <div className="flex justify-center space-x-6 mt-6 pt-6 border-t border-slate-200 dark:border-slate-700">
+      <div className="flex justify-center space-x-6 mt-4 pt-4 border-t border-slate-200 dark:border-slate-700">
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-gradient-to-r from-coral-500 to-coral-400 rounded-full" />
+          <div className="w-3 h-3 bg-gradient-to-r from-red-500 to-orange-400 rounded-full" />
           <span className="text-xs text-slate-600 dark:text-slate-400">Strength</span>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-gradient-to-r from-teal-500 to-teal-400 rounded-full" />
+          <div className="w-3 h-3 bg-gradient-to-r from-teal-500 to-cyan-400 rounded-full" />
           <span className="text-xs text-slate-600 dark:text-slate-400">Cardio</span>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-gradient-to-r from-accent to-blue-400 rounded-full" />
+          <div className="w-3 h-3 bg-gradient-to-r from-purple-500 to-indigo-400 rounded-full" />
           <span className="text-xs text-slate-600 dark:text-slate-400">Yoga</span>
         </div>
         <div className="flex items-center space-x-2">
-          <div className="w-3 h-3 bg-gradient-to-r from-success to-green-400 rounded-full" />
+          <div className="w-3 h-3 bg-gradient-to-r from-green-500 to-emerald-400 rounded-full" />
           <span className="text-xs text-slate-600 dark:text-slate-400">HIIT</span>
         </div>
       </div>

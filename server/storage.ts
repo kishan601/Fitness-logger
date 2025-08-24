@@ -38,14 +38,14 @@ export class MemStorage implements IStorage {
 
   private seedExercises() {
     const exercises: Exercise[] = [
-      { id: randomUUID(), name: "Running", category: "cardio", caloriesPerMinute: 8, emoji: "🏃‍♂️" },
-      { id: randomUUID(), name: "Push-ups", category: "strength", caloriesPerMinute: 5, emoji: "💪" },
-      { id: randomUUID(), name: "Yoga", category: "flexibility", caloriesPerMinute: 3, emoji: "🧘‍♀️" },
-      { id: randomUUID(), name: "HIIT", category: "cardio", caloriesPerMinute: 12, emoji: "⚡" },
-      { id: randomUUID(), name: "Cycling", category: "cardio", caloriesPerMinute: 6, emoji: "🚴‍♂️" },
-      { id: randomUUID(), name: "Swimming", category: "cardio", caloriesPerMinute: 10, emoji: "🏊‍♂️" },
-      { id: randomUUID(), name: "Weight Training", category: "strength", caloriesPerMinute: 7, emoji: "🏋️‍♂️" },
-      { id: randomUUID(), name: "Pilates", category: "flexibility", caloriesPerMinute: 4, emoji: "🤸‍♀️" },
+      { id: randomUUID(), userId: "system", name: "Running", category: "cardio", caloriesPerMinute: 8, emoji: "🏃‍♂️" },
+      { id: randomUUID(), userId: "system", name: "Push-ups", category: "strength", caloriesPerMinute: 5, emoji: "💪" },
+      { id: randomUUID(), userId: "system", name: "Yoga", category: "flexibility", caloriesPerMinute: 3, emoji: "🧘‍♀️" },
+      { id: randomUUID(), userId: "system", name: "HIIT", category: "cardio", caloriesPerMinute: 12, emoji: "⚡" },
+      { id: randomUUID(), userId: "system", name: "Cycling", category: "cardio", caloriesPerMinute: 6, emoji: "🚴‍♂️" },
+      { id: randomUUID(), userId: "system", name: "Swimming", category: "cardio", caloriesPerMinute: 10, emoji: "🏊‍♂️" },
+      { id: randomUUID(), userId: "system", name: "Weight Training", category: "strength", caloriesPerMinute: 7, emoji: "🏋️‍♂️" },
+      { id: randomUUID(), userId: "system", name: "Pilates", category: "flexibility", caloriesPerMinute: 4, emoji: "🤸‍♀️" },
     ];
     
     exercises.forEach(exercise => this.exercises.set(exercise.id, exercise));
