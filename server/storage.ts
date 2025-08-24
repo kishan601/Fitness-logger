@@ -52,7 +52,85 @@ export class MemStorage implements IStorage {
   }
 
   private seedSampleData() {
-    // No sample data - start with clean slate for real user data only
+    // Create demo user and sample workouts
+    const demoUserId = "demo-user";
+    
+    const now = new Date();
+    
+    // Calculate current week to ensure all workouts fall within it
+    const currentDay = now.getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const daysFromMonday = currentDay === 0 ? 6 : currentDay - 1;
+    
+    const startOfWeek = new Date(now);
+    startOfWeek.setDate(now.getDate() - daysFromMonday);
+    startOfWeek.setHours(0, 0, 0, 0);
+    
+    // Sample workouts for demo purposes - distributed across current week
+    const sampleWorkouts: Workout[] = [
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        exerciseType: "Running",
+        duration: 30,
+        calories: 240,
+        intensity: "medium",
+        notes: "Morning jog in the park",
+        date: new Date(startOfWeek.getTime() + 1 * 24 * 60 * 60 * 1000), // Tuesday
+      },
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        exerciseType: "Yoga",
+        duration: 45,
+        calories: 135,
+        intensity: "low",
+        notes: "Relaxing evening session",
+        date: new Date(startOfWeek.getTime() + 3 * 24 * 60 * 60 * 1000), // Thursday
+      },
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        exerciseType: "HIIT",
+        duration: 20,
+        calories: 240,
+        intensity: "high",
+        notes: "Intense workout session",
+        date: new Date(startOfWeek.getTime() + 5 * 24 * 60 * 60 * 1000), // Saturday
+      },
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        exerciseType: "Weight Training",
+        duration: 40,
+        calories: 280,
+        intensity: "high",
+        notes: "Strength training session",
+        date: new Date(startOfWeek.getTime() + 0 * 24 * 60 * 60 * 1000), // Monday
+      },
+    ];
+
+    // Sample goals
+    const sampleGoals: Goal[] = [
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        type: "daily_calories",
+        target: 500,
+        current: 240,
+        date: new Date(),
+      },
+      {
+        id: randomUUID(),
+        userId: demoUserId,
+        type: "weekly_workouts",
+        target: 5,
+        current: 3,
+        date: new Date(),
+      },
+    ];
+
+    sampleWorkouts.forEach(workout => this.workouts.set(workout.id, workout));
+    sampleGoals.forEach(goal => this.goals.set(goal.id, goal));
   }
 
   async getUser(id: string): Promise<User | undefined> {
