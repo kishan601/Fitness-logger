@@ -1,0 +1,18 @@
+[
+  {
+    "id": "f70384ff-b956-4515-86fd-14114583fd7d",
+    "userId": "demo-user",
+    "type": "daily_calories",
+    "target": 500,
+    "current": 240,
+    "date": "2025-08-24T06:29:45.059Z"
+  },
+  {
+    "id": "710c3a45-bb11-4383-bdde-3f3493043263",
+    "userId": "demo-user",
+    "type": "weekly_workouts",
+    "target": 5,
+    "current": 3,
+    "date": "2025-08-24T06:29:45.059Z"
+  }
+]

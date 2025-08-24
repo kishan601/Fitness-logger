@@ -1,5 +1,7 @@
 import { type User, type InsertUser, type Workout, type InsertWorkout, type Exercise, type InsertExercise, type Goal, type InsertGoal } from "@shared/schema";
 import { randomUUID } from "crypto";
+import { readFileSync, writeFileSync, existsSync, mkdirSync } from "fs";
+import { join } from "path";
 
 export interface IStorage {
   getUser(id: string): Promise<User | undefined>;
@@ -19,36 +21,98 @@ export interface IStorage {
   updateGoal(goalId: string, current: number): Promise<Goal | undefined>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-  private workouts: Map<string, Workout>;
-  private exercises: Map<string, Exercise>;
-  private goals: Map<string, Goal>;
+// File storage paths
+const STORAGE_DIR = './data';
+const STORAGE_FILES = {
+  USERS: 'users.json',
+  WORKOUTS: 'workouts.json', 
+  EXERCISES: 'exercises.json',
+  GOALS: 'goals.json',
+  SEEDED: 'seeded.json'
+} as const;
 
+export class FileStorage implements IStorage {
   constructor() {
-    this.users = new Map();
-    this.workouts = new Map();
-    this.exercises = new Map();
-    this.goals = new Map();
+    // Ensure storage directory exists
+    if (!existsSync(STORAGE_DIR)) {
+      mkdirSync(STORAGE_DIR, { recursive: true });
+    }
     
-    // Seed with popular exercises and sample data
-    this.seedExercises();
-    this.seedSampleData();
+    // Only seed once on first load
+    if (!this.isSeeded()) {
+      this.seedExercises();
+      this.seedSampleData();
+      this.setSeeded();
+    }
+  }
+
+  private getFromStorage<T>(filename: string, defaultValue: T[] = []): T[] {
+    const filepath = join(STORAGE_DIR, filename);
+    try {
+      if (existsSync(filepath)) {
+        const data = readFileSync(filepath, 'utf-8');
+        return JSON.parse(data);
+      }
+      return defaultValue as T[];
+    } catch (error) {
+      console.error(`Failed to read from ${filename}:`, error);
+      return defaultValue as T[];
+    }
+  }
+
+  private isSeeded(): boolean {
+    const filepath = join(STORAGE_DIR, STORAGE_FILES.SEEDED);
+    try {
+      if (existsSync(filepath)) {
+        const data = readFileSync(filepath, 'utf-8');
+        return JSON.parse(data);
+      }
+      return false;
+    } catch (error) {
+      console.error(`Failed to read seeded flag:`, error);
+      return false;
+    }
+  }
+
+  private setSeeded(): void {
+    const filepath = join(STORAGE_DIR, STORAGE_FILES.SEEDED);
+    try {
+      writeFileSync(filepath, JSON.stringify(true, null, 2), 'utf-8');
+    } catch (error) {
+      console.error(`Failed to save seeded flag:`, error);
+    }
+  }
+
+  private setInStorage<T>(filename: string, data: T[]): void {
+    const filepath = join(STORAGE_DIR, filename);
+    try {
+      writeFileSync(filepath, JSON.stringify(data, null, 2), 'utf-8');
+    } catch (error) {
+      console.error(`Failed to save to ${filename}:`, error);
+    }
+  }
+
+  private findById<T extends { id: string }>(items: T[], id: string): T | undefined {
+    return items.find(item => item.id === id);
+  }
+
+  private filterByUserId<T extends { userId: string }>(items: T[], userId: string): T[] {
+    return items.filter(item => item.userId === userId);
   }
 
   private seedExercises() {
     const exercises: Exercise[] = [
-      { id: randomUUID(), userId: "system", name: "Running", category: "cardio", caloriesPerMinute: 8, emoji: "🏃‍♂️" },
-      { id: randomUUID(), userId: "system", name: "Push-ups", category: "strength", caloriesPerMinute: 5, emoji: "💪" },
-      { id: randomUUID(), userId: "system", name: "Yoga", category: "flexibility", caloriesPerMinute: 3, emoji: "🧘‍♀️" },
-      { id: randomUUID(), userId: "system", name: "HIIT", category: "cardio", caloriesPerMinute: 12, emoji: "⚡" },
-      { id: randomUUID(), userId: "system", name: "Cycling", category: "cardio", caloriesPerMinute: 6, emoji: "🚴‍♂️" },
-      { id: randomUUID(), userId: "system", name: "Swimming", category: "cardio", caloriesPerMinute: 10, emoji: "🏊‍♂️" },
-      { id: randomUUID(), userId: "system", name: "Weight Training", category: "strength", caloriesPerMinute: 7, emoji: "🏋️‍♂️" },
-      { id: randomUUID(), userId: "system", name: "Pilates", category: "flexibility", caloriesPerMinute: 4, emoji: "🤸‍♀️" },
+      { id: randomUUID(), name: "Running", category: "cardio", caloriesPerMinute: 8, emoji: "🏃‍♂️" },
+      { id: randomUUID(), name: "Push-ups", category: "strength", caloriesPerMinute: 5, emoji: "💪" },
+      { id: randomUUID(), name: "Yoga", category: "flexibility", caloriesPerMinute: 3, emoji: "🧘‍♀️" },
+      { id: randomUUID(), name: "HIIT", category: "cardio", caloriesPerMinute: 12, emoji: "⚡" },
+      { id: randomUUID(), name: "Cycling", category: "cardio", caloriesPerMinute: 6, emoji: "🚴‍♂️" },
+      { id: randomUUID(), name: "Swimming", category: "cardio", caloriesPerMinute: 10, emoji: "🏊‍♂️" },
+      { id: randomUUID(), name: "Weight Training", category: "strength", caloriesPerMinute: 7, emoji: "🏋️‍♂️" },
+      { id: randomUUID(), name: "Pilates", category: "flexibility", caloriesPerMinute: 4, emoji: "🤸‍♀️" },
     ];
     
-    exercises.forEach(exercise => this.exercises.set(exercise.id, exercise));
+    this.setInStorage(STORAGE_FILES.EXERCISES, exercises);
   }
 
   private seedSampleData() {
@@ -129,34 +193,37 @@ export class MemStorage implements IStorage {
       },
     ];
 
-    sampleWorkouts.forEach(workout => this.workouts.set(workout.id, workout));
-    sampleGoals.forEach(goal => this.goals.set(goal.id, goal));
+    this.setInStorage(STORAGE_FILES.WORKOUTS, sampleWorkouts);
+    this.setInStorage(STORAGE_FILES.GOALS, sampleGoals);
   }
 
   async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+    const users = this.getFromStorage<User>(STORAGE_FILES.USERS);
+    return this.findById(users, id);
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+    const users = this.getFromStorage<User>(STORAGE_FILES.USERS);
+    return users.find(user => user.username === username);
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
+    const users = this.getFromStorage<User>(STORAGE_FILES.USERS);
     const id = randomUUID();
     const user: User = { ...insertUser, id };
-    this.users.set(id, user);
+    users.push(user);
+    this.setInStorage(STORAGE_FILES.USERS, users);
     return user;
   }
 
   async getWorkouts(userId: string): Promise<Workout[]> {
-    return Array.from(this.workouts.values()).filter(
-      workout => workout.userId === userId
-    ).sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+    const workouts = this.getFromStorage<Workout>(STORAGE_FILES.WORKOUTS);
+    return this.filterByUserId(workouts, userId)
+      .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   }
 
   async createWorkout(userId: string, insertWorkout: InsertWorkout): Promise<Workout> {
+    const workouts = this.getFromStorage<Workout>(STORAGE_FILES.WORKOUTS);
     const id = randomUUID();
     const workout: Workout = { 
       ...insertWorkout,
@@ -165,21 +232,26 @@ export class MemStorage implements IStorage {
       userId, 
       date: insertWorkout.date ? new Date(insertWorkout.date) : new Date() 
     };
-    this.workouts.set(id, workout);
+    workouts.push(workout);
+    this.setInStorage(STORAGE_FILES.WORKOUTS, workouts);
     return workout;
   }
 
   async updateWorkout(workoutId: string, updates: Partial<Workout>): Promise<Workout | undefined> {
-    const workout = this.workouts.get(workoutId);
-    if (workout) {
-      const updatedWorkout = { ...workout, ...updates };
-      this.workouts.set(workoutId, updatedWorkout);
+    const workouts = this.getFromStorage<Workout>(STORAGE_FILES.WORKOUTS);
+    const workoutIndex = workouts.findIndex(w => w.id === workoutId);
+    if (workoutIndex >= 0) {
+      const updatedWorkout = { ...workouts[workoutIndex], ...updates };
+      workouts[workoutIndex] = updatedWorkout;
+      this.setInStorage(STORAGE_FILES.WORKOUTS, workouts);
       return updatedWorkout;
     }
     return undefined;
   }
 
   async getWorkoutsByDateRange(userId: string, startDate: Date, endDate: Date): Promise<Workout[]> {
+    const workouts = this.getFromStorage<Workout>(STORAGE_FILES.WORKOUTS);
+    
     // Fix the endDate to be end of day if it's not already
     const fixedEndDate = new Date(endDate);
     if (fixedEndDate.getHours() !== 23) {
@@ -188,7 +260,7 @@ export class MemStorage implements IStorage {
     
     console.log('Date range filter:', startDate.toISOString(), 'to', fixedEndDate.toISOString());
     
-    return Array.from(this.workouts.values()).filter(workout => {
+    return workouts.filter(workout => {
       if (workout.userId !== userId) return false;
       
       const workoutDate = new Date(workout.date);
@@ -200,23 +272,25 @@ export class MemStorage implements IStorage {
   }
 
   async getExercises(): Promise<Exercise[]> {
-    return Array.from(this.exercises.values());
+    return this.getFromStorage<Exercise>(STORAGE_FILES.EXERCISES);
   }
 
   async createExercise(insertExercise: InsertExercise): Promise<Exercise> {
+    const exercises = this.getFromStorage<Exercise>(STORAGE_FILES.EXERCISES);
     const id = randomUUID();
     const exercise: Exercise = { ...insertExercise, id };
-    this.exercises.set(id, exercise);
+    exercises.push(exercise);
+    this.setInStorage(STORAGE_FILES.EXERCISES, exercises);
     return exercise;
   }
 
   async getGoals(userId: string): Promise<Goal[]> {
-    return Array.from(this.goals.values()).filter(
-      goal => goal.userId === userId
-    );
+    const goals = this.getFromStorage<Goal>(STORAGE_FILES.GOALS);
+    return this.filterByUserId(goals, userId);
   }
 
   async createGoal(userId: string, insertGoal: InsertGoal): Promise<Goal> {
+    const goals = this.getFromStorage<Goal>(STORAGE_FILES.GOALS);
     const id = randomUUID();
     const goal: Goal = { 
       ...insertGoal, 
@@ -225,18 +299,21 @@ export class MemStorage implements IStorage {
       current: 0,
       date: new Date() 
     };
-    this.goals.set(id, goal);
+    goals.push(goal);
+    this.setInStorage(STORAGE_FILES.GOALS, goals);
     return goal;
   }
 
   async updateGoal(goalId: string, current: number): Promise<Goal | undefined> {
-    const goal = this.goals.get(goalId);
-    if (goal) {
-      goal.current = current;
-      this.goals.set(goalId, goal);
+    const goals = this.getFromStorage<Goal>(STORAGE_FILES.GOALS);
+    const goalIndex = goals.findIndex(g => g.id === goalId);
+    if (goalIndex >= 0) {
+      goals[goalIndex].current = current;
+      this.setInStorage(STORAGE_FILES.GOALS, goals);
+      return goals[goalIndex];
     }
-    return goal;
+    return undefined;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new FileStorage();
