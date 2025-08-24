@@ -41,11 +41,12 @@ export function WeeklyProgress() {
       
       const dayWorkouts = weeklyWorkouts.filter(workout => {
         const workoutDate = new Date(workout.date);
-        const workoutDateString = workoutDate.toDateString();
-        const currentDateString = currentDate.toDateString();
         
+        // Normalize both dates to YYYY-MM-DD format for comparison (timezone-safe)
+        const workoutDateOnly = workoutDate.toISOString().split('T')[0];
+        const currentDateOnly = currentDate.toISOString().split('T')[0];
         
-        return workoutDateString === currentDateString;
+        return workoutDateOnly === currentDateOnly;
       });
 
       const totalCalories = dayWorkouts.reduce((sum, workout) => sum + workout.calories, 0);
