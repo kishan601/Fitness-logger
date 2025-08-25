@@ -1,0 +1,121 @@
+❌ Failed to seed exercises: ErrorEvent {
+
+  [Symbol(kTarget)]: WebSocket {
+
+    _events: [Object: null prototype] {
+
+      error: [Function],
+
+      message: [Function],
+
+      close: [Function],
+
+      open: [Function]
+
+    },
+
+    _eventsCount: 4,
+
+    _maxListeners: undefined,
+
+    _binaryType: 'arraybuffer',
+
+    _closeCode: 1006,
+
+    _closeFrameReceived: false,
+
+    _closeFrameSent: false,
+
+    _closeMessage: <Buffer >,
+
+    _closeTimer: null,
+
+    _errorEmitted: true,
+
+    _extensions: {},
+
+    _paused: false,
+
+    _protocol: '',
+
+    _readyState: 3,
+
+    _receiver: null,
+
+    _sender: null,
+
+    _socket: null,
+
+    _bufferedAmount: 0,
+
+    _isServer: false,
+
+    _redirects: 0,
+
+    _autoPong: true,
+
+    _url: 'wss://shinkansen.proxy.rlwy.net/v2',
+
+    _req: null,
+
+    [Symbol(shapeMode)]: false,
+
+    [Symbol(kCapture)]: false
+
+  },
+
+  [Symbol(kType)]: 'error',
+
+  [Symbol(kError)]: Error [ERR_TLS_CERT_ALTNAME_INVALID]: Hostname/IP does not match certificate's altnames: Host: shinkansen.proxy.rlwy.net. is not in the cert's altnames: DNS:*.up.railway.app
+
+      at Object.checkServerIdentity (node:tls:386:12)
+
+      at TLSSocket.onConnectSecure (node:_tls_wrap:1689:27)
+
+      at TLSSocket.emit (node:events:518:28)
+
+      at TLSSocket._finishInit (node:_tls_wrap:1078:8)
+
+      at ssl.onhandshakedone (node:_tls_wrap:864:12) {
+
+    code: 'ERR_TLS_CERT_ALTNAME_INVALID',
+
+    reason: "Host: shinkansen.proxy.rlwy.net. is not in the cert's altnames: DNS:*.up.railway.app",
+
+    host: 'shinkansen.proxy.rlwy.net',
+
+    cert: {
+
+      subject: [Object: null prototype],
+
+      issuer: [Object: null prototype],
+
+      subjectaltname: 'DNS:*.up.railway.app',
+
+      infoAccess: [Object: null prototype],
+
+      ca: false,
+
+      modulus: 'ACA3B6760FFCD9F609C2CA9DE035D753CA200B8D2D3D0DEF7918111D55A23D81A5B600EEEC55894A465B7F09E2442F36D831E091EADFC1F458474717E026EA5D03CC299A745E7A7B40FBE5C1539CC99E6B18D2A991DEB0A0379276877B0C834E7A8BD17FB9A272B6741EF7C4ECC623E428E0045C6FF22F10DC6089C00F56116B81C56CB818351E267A8D1B20CB27F654B03C4A986F6D461B2805E4251820D4DC9FC3921E3777DA63F8CDE8F1CBE7BE2A528484E2E522E4CDCF392FAA9DC24C1721E2352A1B777275F36424E7067139C80041011F0E92B0BA8C3E91B1B4FE544B9F001FBF06FFFB87EEBCA28A7D26DA3A83A513350C59F237EC6EDB132AAE0D979AD8CEBC8570EC79ADFDAAF2BD3AB5669CDA5F3031FC04ABEF201240C1D9202D3128346D2C8A6510C6AD25981B4611FD7DB3BD3CE576E155E73ABE9A56A0D03B83CFE3FBE7B0DF2F7E575C150A4895E4961BEC853CC155C3B27CC2091CA0B8F6D951555C5BF0425BEE2D4B7C6294C43A300B017E36C9042388C2908C5C16D1883D06436F20F7036EB6D1942A0957B79C46ACD763E9A7957393548B511F01D17C19CEF7F537E539CA1313B6D926B6FAABD64882AEECE5D2FD6DE3D2CDD7D642686B74C48864CF16117B8C17B51809CBF152077CC73C5366C145695051B8C08CCA19329984AFCF533E81EAA55901E4CC191E64BC9000202656E98C387369DBFD89',
+
+      bits: 4096,
+
+      exponent: '0x10001',
+
+      pubkey: <Buffer 30 82 02 22 30 0d 06 09 2a 86 48 86 f7 0d 01 01 01 05 00 03 82 02 0f 00 30 82 02 0a 02 82 02 01 00 ac a3 b6 76 0f fc d9 f6 09 c2 ca 9d e0 35 d7 53 ca ... 500 more bytes>,
+
+      valid_from: 'Aug  3 14:01:43 2025 GMT',
+
+      valid_to: 'Nov  1 14:01:42 2025 GMT',
+
+      fingerprint: 'AB:D4:2D:1B:95:CC:86:F4:6F:2F:6A:3B:33:66:31:45:F3:A8:07:E8',
+
+      fingerprint256: '6D:1A:CC:07:07:01:80:47:DC:17:AC:6B:34:CA:2F:76:C5:FE:E7:65:18:6A:9C:B2:2B:5D:68:2B:F0:8D:F8:F0',
+
+      fingerprint512: 'E5:B7:64:F5:30:13:63:35:98:51:4E:5A:9C:E7:EA:6A:2E:F1:EC:62:92:2D:8D:7F:40:0D:74:57:CE:D0:93:5E:97:D1:A5:11:7C:3E:C0:B0:37:D8:9A:67:6E:CD:FD:4D:7C:7B:17:03:33:17:AD:EF:CD:98:20:93:0F:17:1C:A5',
+
+      ext_key_usage: [Array],
+
+      serialNumber: '06C8C0E8236F9DC6CD387D17E34B9E254261',
+
+      raw: <Buffer 30 82 05 fd 30 82 04 e5 a0 03 02 01 02 02 12 06 c8 c0 e8 23 6f 9d c6 cd 38 7d 17 e3 4b 9e 25 42 61 30 0d 06 09 2a 86 48 86 f7 0d 01 01 0b 05 00 30 33 ... 1487 more bytes>,
