@@ -1,0 +1,192 @@
+Final weekly data for chart: []length: 0[[Prototype]]: Array(0)
+index-HBhxzZTe.js:48  GET https://fit-track-mod-production.up.railway.app/api/workouts 500 (Internal Server Error)
+(anonymous) @ index-HBhxzZTe.js:48
+o @ index-HBhxzZTe.js:48
+b @ index-HBhxzZTe.js:48
+start @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+fi @ index-HBhxzZTe.js:48
+onSubscribe @ index-HBhxzZTe.js:48
+subscribe @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+ey @ index-HBhxzZTe.js:38
+vu @ index-HBhxzZTe.js:40
+oo @ index-HBhxzZTe.js:40
+sm @ index-HBhxzZTe.js:40
+Gr @ index-HBhxzZTe.js:38
+Xk @ index-HBhxzZTe.js:40
+ts @ index-HBhxzZTe.js:40
+Ay @ index-HBhxzZTe.js:40
+_ @ index-HBhxzZTe.js:25
+A @ index-HBhxzZTe.js:25
+index-HBhxzZTe.js:48  GET https://fit-track-mod-production.up.railway.app/api/goals 500 (Internal Server Error)
+(anonymous) @ index-HBhxzZTe.js:48
+o @ index-HBhxzZTe.js:48
+b @ index-HBhxzZTe.js:48
+start @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+fi @ index-HBhxzZTe.js:48
+onSubscribe @ index-HBhxzZTe.js:48
+subscribe @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+ey @ index-HBhxzZTe.js:38
+vu @ index-HBhxzZTe.js:40
+oo @ index-HBhxzZTe.js:40
+sm @ index-HBhxzZTe.js:40
+Gr @ index-HBhxzZTe.js:38
+Xk @ index-HBhxzZTe.js:40
+ts @ index-HBhxzZTe.js:40
+Ay @ index-HBhxzZTe.js:40
+_ @ index-HBhxzZTe.js:25
+A @ index-HBhxzZTe.js:25
+index-HBhxzZTe.js:48  GET https://fit-track-mod-production.up.railway.app/api/workouts/weekly 500 (Internal Server Error)
+(anonymous) @ index-HBhxzZTe.js:48
+o @ index-HBhxzZTe.js:48
+b @ index-HBhxzZTe.js:48
+start @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+fi @ index-HBhxzZTe.js:48
+onSubscribe @ index-HBhxzZTe.js:48
+subscribe @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+ey @ index-HBhxzZTe.js:38
+vu @ index-HBhxzZTe.js:40
+oo @ index-HBhxzZTe.js:40
+sm @ index-HBhxzZTe.js:40
+Gr @ index-HBhxzZTe.js:38
+Xk @ index-HBhxzZTe.js:40
+ts @ index-HBhxzZTe.js:40
+Ay @ index-HBhxzZTe.js:40
+_ @ index-HBhxzZTe.js:25
+A @ index-HBhxzZTe.js:25
+index-HBhxzZTe.js:48  GET https://fit-track-mod-production.up.railway.app/api/exercises 500 (Internal Server Error)
+(anonymous) @ index-HBhxzZTe.js:48
+o @ index-HBhxzZTe.js:48
+b @ index-HBhxzZTe.js:48
+start @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+fi @ index-HBhxzZTe.js:48
+onSubscribe @ index-HBhxzZTe.js:48
+subscribe @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+ey @ index-HBhxzZTe.js:38
+vu @ index-HBhxzZTe.js:40
+oo @ index-HBhxzZTe.js:40
+sm @ index-HBhxzZTe.js:40
+Gr @ index-HBhxzZTe.js:38
+Xk @ index-HBhxzZTe.js:40
+ts @ index-HBhxzZTe.js:40
+Ay @ index-HBhxzZTe.js:40
+_ @ index-HBhxzZTe.js:25
+A @ index-HBhxzZTe.js:25
+index-HBhxzZTe.js:223 Final weekly data for chart: []length: 0[[Prototype]]: Array(0)
+index-HBhxzZTe.js:223 Final weekly data for chart: []length: 0[[Prototype]]: Array(0)
+index-HBhxzZTe.js:48  GET https://fit-track-mod-production.up.railway.app/api/workouts/weekly 500 (Internal Server Error)
+(anonymous) @ index-HBhxzZTe.js:48
+o @ index-HBhxzZTe.js:48
+b @ index-HBhxzZTe.js:48
+start @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+fi @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+refetch @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+batch @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+await in (anonymous)
+(anonymous) @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+n @ index-HBhxzZTe.js:48
+index-HBhxzZTe.js:223 Final weekly data for chart: []length: 0[[Prototype]]: Array(0)
+index-HBhxzZTe.js:223 Final weekly data for chart: []
+index-HBhxzZTe.js:48  GET https://fit-track-mod-production.up.railway.app/api/workouts/weekly 500 (Internal Server Error)
+(anonymous) @ index-HBhxzZTe.js:48
+o @ index-HBhxzZTe.js:48
+b @ index-HBhxzZTe.js:48
+start @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+fi @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+refetch @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+batch @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+await in (anonymous)
+(anonymous) @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+n @ index-HBhxzZTe.js:48
+index-HBhxzZTe.js:223 Final weekly data for chart: []
+index-HBhxzZTe.js:223 Final weekly data for chart: []
+index-HBhxzZTe.js:48  GET https://fit-track-mod-production.up.railway.app/api/workouts/weekly 500 (Internal Server Error)
+(anonymous) @ index-HBhxzZTe.js:48
+o @ index-HBhxzZTe.js:48
+b @ index-HBhxzZTe.js:48
+start @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+fi @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+refetch @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+batch @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+await in (anonymous)
+(anonymous) @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+n @ index-HBhxzZTe.js:48
+index-HBhxzZTe.js:223 Final weekly data for chart: []
+index-HBhxzZTe.js:223 Final weekly data for chart: []
+index-HBhxzZTe.js:48  GET https://fit-track-mod-production.up.railway.app/api/workouts/weekly 500 (Internal Server Error)
+(anonymous) @ index-HBhxzZTe.js:48
+o @ index-HBhxzZTe.js:48
+b @ index-HBhxzZTe.js:48
+start @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+fi @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+refetch @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+batch @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+await in (anonymous)
+(anonymous) @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+n @ index-HBhxzZTe.js:48
+index-HBhxzZTe.js:223 Final weekly data for chart: []
+index-HBhxzZTe.js:223 Final weekly data for chart: []
+index-HBhxzZTe.js:48  GET https://fit-track-mod-production.up.railway.app/api/workouts/weekly 500 (Internal Server Error)
+(anonymous) @ index-HBhxzZTe.js:48
+o @ index-HBhxzZTe.js:48
+b @ index-HBhxzZTe.js:48
+start @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+fi @ index-HBhxzZTe.js:48
+fetch @ index-HBhxzZTe.js:48
+refetch @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+batch @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+await in (anonymous)
+(anonymous) @ index-HBhxzZTe.js:48
+onFocus @ index-HBhxzZTe.js:48
+(anonymous) @ index-HBhxzZTe.js:48
+n @ index-HBhxzZTe.js:48
+index-HBhxzZTe.js:223 Final weekly data for chart: []
