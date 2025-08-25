@@ -109,7 +109,11 @@ export async function registerRoutes(app: Express): Promise<Server> {
     }
   });
 
-  app.post("/api/workouts", ensureUserSession, async (req, res) => {
+  app.post("/api/workouts", (req, res, next) => {
+    console.log("=== POST /api/workouts HIT ===");
+    console.log("Body:", req.body);
+    next();
+  }, ensureUserSession, async (req, res) => {
     try {
       const authReq = req as AuthenticatedRequest;
       console.log("Received workout data:", req.body);
