@@ -7,8 +7,8 @@ import type { IStorage } from "./storage";
 
 export class DatabaseStorage implements IStorage {
   constructor() {
-    // Seeding disabled - exercises already exist via db:push
-    // this.seedExercises();
+    // Enable seeding for initial setup
+    this.seedExercises();
   }
 
   // User management
