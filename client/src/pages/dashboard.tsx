@@ -16,13 +16,23 @@ export default function Dashboard() {
   const [userName, setUserName] = useState("Alex");
   const [isEditingName, setIsEditingName] = useState(false);
   
-  const { data: workouts } = useQuery<Workout[]>({
+  const { data: workouts, error: workoutsError } = useQuery<Workout[]>({
     queryKey: ["/api/workouts"],
+    retry: false,
   });
 
-  const { data: goals } = useQuery<Goal[]>({
+  const { data: goals, error: goalsError } = useQuery<Goal[]>({
     queryKey: ["/api/goals"],
+    retry: false,
   });
+
+  // Log errors if they exist
+  if (workoutsError) {
+    console.error("Failed to fetch workouts:", workoutsError);
+  }
+  if (goalsError) {
+    console.error("Failed to fetch goals:", goalsError);
+  }
 
   const getCurrentDateTime = () => {
     const now = new Date();

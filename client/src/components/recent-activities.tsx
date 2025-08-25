@@ -35,9 +35,15 @@ export function RecentActivities() {
   const [editValue, setEditValue] = useState<string>("");
   const queryClient = useQueryClient();
   
-  const { data: workouts, isLoading } = useQuery<Workout[]>({
+  const { data: workouts, isLoading, error } = useQuery<Workout[]>({
     queryKey: ["/api/workouts"],
+    retry: false,
   });
+
+  // Log error if it exists
+  if (error) {
+    console.error("Failed to fetch recent activities:", error);
+  }
 
   const updateCaloriesMutation = useMutation({
     mutationFn: async ({ workoutId, calories }: { workoutId: string; calories: number }) => {

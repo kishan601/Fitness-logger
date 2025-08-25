@@ -4,9 +4,15 @@ import { Button } from "@/components/ui/button";
 import type { Exercise } from "@shared/schema";
 
 export function ExerciseLibrary() {
-  const { data: exercises, isLoading } = useQuery<Exercise[]>({
+  const { data: exercises, isLoading, error } = useQuery<Exercise[]>({
     queryKey: ["/api/exercises"],
+    retry: false,
   });
+
+  // Log error if it exists
+  if (error) {
+    console.error("Failed to fetch exercises:", error);
+  }
 
   if (isLoading) {
     return (

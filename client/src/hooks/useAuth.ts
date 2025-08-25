@@ -15,10 +15,15 @@ export interface AuthState {
 export function useAuth() {
   const queryClient = useQueryClient();
 
-  const { data: authState, isLoading } = useQuery<AuthState>({
+  const { data: authState, isLoading, error } = useQuery<AuthState>({
     queryKey: ["/api/auth/user"],
     retry: false,
   });
+
+  // Log error if it exists (but this is expected for guest users)
+  if (error) {
+    console.log("Auth check failed (this is normal for guest users):", error);
+  }
 
   const registerMutation = useMutation({
     mutationFn: async ({ username, password }: { username: string; password: string }) => {

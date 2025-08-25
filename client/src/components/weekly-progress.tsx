@@ -18,11 +18,16 @@ export function WeeklyProgress() {
     queryKey: ["/api/workouts/weekly"],
     refetchOnMount: true,
     refetchOnWindowFocus: true,
+    retry: false,
   });
 
+  // Log error if it exists
+  if (error) {
+    console.error("Failed to fetch weekly workouts:", error);
+  }
 
   const getWeeklyData = (): WeeklyData[] => {
-    if (!weeklyWorkouts) return [];
+    if (!weeklyWorkouts || !Array.isArray(weeklyWorkouts)) return [];
 
     console.log('Raw weekly workouts data:', weeklyWorkouts);
 
@@ -43,7 +48,7 @@ export function WeeklyProgress() {
       const currentDate = new Date(startOfWeek);
       currentDate.setDate(startOfWeek.getDate() + index);
       
-      const dayWorkouts = weeklyWorkouts.filter(workout => {
+      const dayWorkouts = weeklyWorkouts.filter((workout: Workout) => {
         const workoutDate = new Date(workout.date);
         
         // FIXED: Handle timezone properly by comparing dates in UTC
@@ -66,7 +71,7 @@ export function WeeklyProgress() {
 
       console.log(`${day}: ${dayWorkouts.length} workouts found`);
 
-      const totalCalories = dayWorkouts.reduce((sum, workout) => sum + workout.calories, 0);
+      const totalCalories = dayWorkouts.reduce((sum: number, workout: Workout) => sum + workout.calories, 0);
       const workoutCount = dayWorkouts.length;
 
       // Determine color based on primary exercise type
@@ -95,7 +100,7 @@ export function WeeklyProgress() {
       }
 
       // Calculate activity score combining calories and duration
-      const totalDuration = dayWorkouts.reduce((sum, workout) => sum + workout.duration, 0);
+      const totalDuration = dayWorkouts.reduce((sum: number, workout: Workout) => sum + workout.duration, 0);
       const activityScore = totalCalories * 0.4 + totalDuration * 2 * 0.6; // Duration weighted more heavily
 
       return {
@@ -124,6 +129,41 @@ export function WeeklyProgress() {
           <div className="h-6 bg-slate-200 dark:bg-slate-700 rounded w-1/3 mb-2" />
           <div className="h-4 bg-slate-200 dark:bg-slate-700 rounded w-1/2 mb-6" />
           <div className="h-64 bg-slate-200 dark:bg-slate-700 rounded" />
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="bg-white dark:bg-card rounded-2xl p-6 border border-gray-200 dark:border-border shadow-lg animate-slide-up">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <h3 className="text-xl font-bold text-slate-900 dark:text-slate-50 mb-1">Weekly Progress</h3>
+            <p className="text-sm text-slate-600 dark:text-slate-400">Your activity over the last 7 days</p>
+          </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            onClick={() => refetch()}
+            className="p-2 rounded-lg bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-600 transition-colors"
+            data-testid="button-refresh-weekly"
+          >
+            <RefreshCw size={14} />
+          </Button>
+        </div>
+        <div className="text-center py-12">
+          <div className="text-slate-500 dark:text-slate-400 mb-4">
+            <p>Unable to load weekly data</p>
+            <p className="text-sm">Check your connection or try refreshing</p>
+          </div>
+          <Button 
+            variant="outline" 
+            onClick={() => refetch()}
+            data-testid="button-retry-weekly"
+          >
+            Try Again
+          </Button>
         </div>
       </div>
     );
