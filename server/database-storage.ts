@@ -22,12 +22,13 @@ export class DatabaseStorage implements IStorage {
     return user;
   }
 
-  async createUser(userData: InsertUser): Promise<User> {
+  async createUser(userData: InsertUser & { id?: string }): Promise<User> {
     const [user] = await db
       .insert(users)
       .values({
-        id: randomUUID(),
-        ...userData,
+        id: userData.id || randomUUID(),
+        username: userData.username,
+        password: userData.password,
       })
       .returning();
     return user;
