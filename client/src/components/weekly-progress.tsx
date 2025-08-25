@@ -29,7 +29,6 @@ export function WeeklyProgress() {
   const getWeeklyData = (): WeeklyData[] => {
     if (!weeklyWorkouts || !Array.isArray(weeklyWorkouts)) return [];
 
-    console.log('Raw weekly workouts data:', weeklyWorkouts);
 
     const days = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
     const today = new Date();
@@ -42,7 +41,6 @@ export function WeeklyProgress() {
     startOfWeek.setDate(today.getDate() - daysFromMonday);
     startOfWeek.setHours(0, 0, 0, 0);
 
-    console.log('Frontend calculated week start:', startOfWeek.toISOString());
 
     return days.map((day, index) => {
       const currentDate = new Date(startOfWeek);
@@ -64,12 +62,10 @@ export function WeeklyProgress() {
                        workoutMonth === currentMonth && 
                        workoutDay === currentDay;
         
-        console.log(`${day} ${currentDate.toDateString()}: checking workout ${workout.exerciseType} on ${workoutDate.toISOString()} = ${isMatch}`);
         
         return isMatch;
       });
 
-      console.log(`${day}: ${dayWorkouts.length} workouts found`);
 
       const totalCalories = dayWorkouts.reduce((sum: number, workout: Workout) => sum + workout.calories, 0);
       const workoutCount = dayWorkouts.length;
@@ -116,8 +112,6 @@ export function WeeklyProgress() {
 
   const weeklyData = getWeeklyData();
   
-  // Log the final weekly data for debugging
-  console.log('Final weekly data for chart:', weeklyData);
   
   const activityScores = weeklyData.map(day => day.activityScore);
   const maxActivityScore = Math.max(...activityScores, 50);
