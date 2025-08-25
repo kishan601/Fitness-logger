@@ -1,2 +1,3 @@
 // client/src/lib/config.ts
-export const BASE_URL = "https://postgres-production-bc95.up.railway.app";
+// Use local backend since Railway is returning 502 errors
+export const BASE_URL = "";
