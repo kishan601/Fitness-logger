@@ -1,3 +1,5 @@
+hey, listen, since tis project is the repllca of my original one i have made few changes on my local one,
+updated  queryClients.ts // client/src/lib/queryClient.ts
 import { QueryClient, QueryFunction } from "@tanstack/react-query";
 import { BASE_URL } from "./config";// import your base URL
 
@@ -50,6 +52,7 @@ export const getQueryFn: <T>(options: {
     return await res.json();
   };
 
+// Create React Query client
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -64,3 +67,10 @@ export const queryClient = new QueryClient({
     },
   },
 });
+
+looking good?
+and created one new file config.ts
+added base-url of backend:
+
+// client/src/lib/config.ts
+export const BASE_URL = "https://postgres-production-bc95.up.railway.app";
