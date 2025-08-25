@@ -1,0 +1,107 @@
+Warning: connect.session() MemoryStore is not
+
+designed for a production environment, as it will leak
+
+memory, and will not scale past a single process.
+
+7:51:14 AM [express] serving on port 8080
+
+❌ Failed to seed exercises: ErrorEvent {
+
+  [Symbol(kTarget)]: WebSocket {
+
+    _events: [Object: null prototype] {
+
+      error: [Function],
+
+      message: [Function],
+
+      close: [Function],
+
+      open: [Function]
+
+    },
+
+    _eventsCount: 4,
+
+    _maxListeners: undefined,
+
+    _binaryType: 'arraybuffer',
+
+    _closeCode: 1006,
+
+    _closeFrameReceived: false,
+
+    _closeFrameSent: false,
+
+    _closeMessage: <Buffer >,
+
+    _closeTimer: null,
+
+    _errorEmitted: true,
+
+    _extensions: {},
+
+    _paused: false,
+
+    _protocol: '',
+
+    _readyState: 3,
+
+    _receiver: null,
+
+    _sender: null,
+
+    _socket: null,
+
+    _bufferedAmount: 0,
+
+    _isServer: false,
+
+    _redirects: 0,
+
+    _autoPong: true,
+
+    _url: 'wss://postgres.railway.internal/v2',
+
+    _req: null,
+
+    [Symbol(shapeMode)]: false,
+
+    [Symbol(kCapture)]: false
+
+  },
+
+  [Symbol(kType)]: 'error',
+
+  [Symbol(kError)]: Error: connect ECONNREFUSED fd12:567e:383d:0:9000:12:7987:d04d:443
+
+      at TCPConnectWrap.afterConnect [as oncomplete] (node:net:1637:16) {
+
+    errno: -111,
+
+    code: 'ECONNREFUSED',
+
+    syscall: 'connect',
+
+    address: 'fd12:567e:383d:0:9000:12:7987:d04d',
+
+    port: 443
+
+  },
+
+  [Symbol(kMessage)]: 'connect ECONNREFUSED fd12:567e:383d:0:9000:12:7987:d04d:443'
+
+}
+
+Weekly range: 2025-08-25T00:00:00.000Z to 2025-08-31T23:59:59.999Z
+
+7:52:09 AM [express] GET /api/auth/user 200 in 2ms :: {"isGuest":true,"userId":"guest_524f61ec-fce6-…
+
+7:52:10 AM [express] GET /api/workouts/weekly 500 in 175ms :: {"message":"Failed to fetch weekly wor…
+
+7:52:10 AM [express] GET /api/exercises 500 in 145ms :: {"message":"Failed to fetch exercises"}
+
+7:52:10 AM [express] GET /api/goals 500 in 143ms :: {"message":"Failed to fetch goals"}
+
+7:52:10 AM [express] GET /api/workouts 500 in 165ms :: {"message":"Failed to fetch workouts"}
