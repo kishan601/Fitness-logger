@@ -1,0 +1,65 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { z } from "zod";
+import { Plus } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
+
+const workoutSchema = z.object({
+  exerciseType: z.string().min(1, "Please select an exercise type"),
+  duration: z.coerce.number().min(1, "Duration must be at least 1 minute"),
+  calories: z.coerce.number().min(1, "Calories must be at least 1"),
+  intensity: z.enum(["low", "medium", "high"]),
+  date: z.string().min(1, "Please select a date"),
+  notes: z.string().optional(),
+});
+
+type WorkoutFormData = z.infer<typeof workoutSchema>;
+
+const exerciseOptions = [
+  { value: "Running", label: "🏃‍♂️ Running", emoji: "🏃‍♂️" },
+  { value: "Weight Training", label: "💪 Weight Training", emoji: "💪" },
+  { value: "Yoga", label: "🧘‍♀️ Yoga", emoji: "🧘‍♀️" },
+  { value: "Cycling", label: "🚴‍♂️ Cycling", emoji: "🚴‍♂️" },
+  { value: "Swimming", label: "🏊‍♂️ Swimming", emoji: "🏊‍♂️" },
+  { value: "HIIT", label: "⚡ HIIT", emoji: "⚡" },
+  { value: "Push-ups", label: "💪 Push-ups", emoji: "💪" },
+  { value: "Pilates", label: "🤸‍♀️ Pilates", emoji: "🤸‍♀️" },
+];
+
+export function AddWorkoutForm() {
+  const [selectedIntensity, setSelectedIntensity] = useState<string>("");
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
+
+  const form = useForm<WorkoutFormData>({
+    resolver: zodResolver(workoutSchema),
+    defaultValues: {
+      exerciseType: "",
+      duration: 0,
+      calories: 0,
+      intensity: "medium",
+      date: new Date().toISOString().split("T")[0], // Today's date
+      notes: "",
+    },
+  });
