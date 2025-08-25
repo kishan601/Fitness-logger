@@ -15,17 +15,22 @@ export async function apiRequest(
   endpoint: string,
   data?: unknown | undefined,
 ): Promise<Response> {
-  const url = `${BASE_URL}${endpoint}`; // prepend Railway backend URL
+  try {
+    const url = `${BASE_URL}${endpoint}`; // prepend Railway backend URL
 
-  const res = await fetch(url, {
-    method,
-    headers: data ? { "Content-Type": "application/json" } : {},
-    body: data ? JSON.stringify(data) : undefined,
-    credentials: "include", // ensures cookies/session info is sent
-  });
+    const res = await fetch(url, {
+      method,
+      headers: data ? { "Content-Type": "application/json" } : {},
+      body: data ? JSON.stringify(data) : undefined,
+      credentials: "include", // ensures cookies/session info is sent
+    });
 
-  await throwIfResNotOk(res);
-  return res;
+    await throwIfResNotOk(res);
+    return res;
+  } catch (error) {
+    console.error(`API request failed: ${method} ${endpoint}`, error);
+    throw error;
+  }
 }
 
 // Query function for React Query
@@ -36,24 +41,31 @@ export const getQueryFn: <T>(options: {
 }) => QueryFunction<T> =
   ({ on401: unauthorizedBehavior }) =>
   async ({ queryKey }) => {
-    // join queryKey into URL and prepend BASE_URL
-    const endpoint = queryKey.join("/").replace(/^\/+/, "");
-    const url = `${BASE_URL}/${endpoint}`;
+    try {
+      // join queryKey into URL and prepend BASE_URL
+      const endpoint = queryKey.join("/").replace(/^\/+/, "");
+      const url = `${BASE_URL}/${endpoint}`;
 
-    const res = await fetch(url, { credentials: "include" });
+      const res = await fetch(url, { credentials: "include" });
 
-    if (unauthorizedBehavior === "returnNull" && res.status === 401) {
-      return null;
+      if (unauthorizedBehavior === "returnNull" && res.status === 401) {
+        return null;
+      }
+
+      await throwIfResNotOk(res);
+      return await res.json();
+    } catch (error) {
+      // Log the actual error for debugging
+      console.error(`Query failed for ${queryKey.join("/")}:`, error);
+      // Re-throw to let React Query handle it properly
+      throw error;
     }
-
-    await throwIfResNotOk(res);
-    return await res.json();
   };
 
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      queryFn: getQueryFn({ on401: "throw" }),
+      queryFn: getQueryFn({ on401: "returnNull" }), // Change to returnNull to be more forgiving
       refetchInterval: false,
       refetchOnWindowFocus: false,
       staleTime: 0,
