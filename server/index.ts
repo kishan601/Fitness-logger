@@ -14,17 +14,12 @@ app.use(express.urlencoded({ extended: false }));
 const PgSession = connectPgSimple(session);
 
 app.use(session({
-  store: new PgSession({
-    pool: pool,
-    tableName: 'session',
-    createTableIfMissing: true,
-  }),
   secret: process.env.SESSION_SECRET || 'your-secret-key-change-in-production',
   resave: false,
   saveUninitialized: true,
   cookie: { 
-    secure: process.env.NODE_ENV === 'production', // HTTPS in production
-    maxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
+    secure: process.env.NODE_ENV === 'production',
+    maxAge: 30 * 24 * 60 * 60 * 1000
   }
 }));
 
