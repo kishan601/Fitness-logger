@@ -41,6 +41,7 @@ A modern full-stack fitness tracking application built with React, Express.js, a
 ### Prerequisites
 - Node.js 18+ 
 - npm or yarn
+- PostgreSQL database (Neon, Supabase, or local)
 
 ### Installation
 
@@ -53,23 +54,45 @@ A modern full-stack fitness tracking application built with React, Express.js, a
 2. **Install dependencies**
    ```bash
    npm install
+   npm install dotenv cross-env
    ```
 
 3. **Set up environment variables**
    Create a `.env` file in the root directory:
    ```env
-   DATABASE_URL=your_postgresql_connection_string
-   SESSION_SECRET=your_session_secret
+   DATABASE_URL=postgresql://username:password@host:port/database?sslmode=require
+   SESSION_SECRET=your_random_session_secret_here
    ```
 
-4. **Run the development server**
+4. **Initialize the database**
+   ```bash
+   npm run db:push
+   ```
+
+5. **Run the development server**
+   
+   **For Unix/Linux/Mac:**
+   ```bash
+   npm run dev
+   ```
+   
+   **For Windows:**
+   Make sure your `package.json` has cross-platform scripts:
+   ```json
+   {
+     "scripts": {
+       "dev": "cross-env NODE_ENV=development tsx server/index.ts",
+       "start": "cross-env NODE_ENV=production node dist/index.js"
+     }
+   }
+   ```
+   
+   Then run:
    ```bash
    npm run dev
    ```
 
-   This starts both the frontend (Vite) and backend (Express) servers.
-
-5. **Open your browser**
+6. **Open your browser**
    Navigate to `http://localhost:5000` to see the application.
 
 ## 📊 Usage
