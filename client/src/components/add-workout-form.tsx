@@ -82,24 +82,30 @@ export function AddWorkoutForm() {
       return response.json();
     },
     onSuccess: () => {
-      // Force invalidate specific queries with refetch
-      queryClient.invalidateQueries({ queryKey: ['/api/workouts'], refetchType: 'all' });
-      queryClient.invalidateQueries({ queryKey: ['/api/workouts/weekly'], refetchType: 'all' });
-      queryClient.invalidateQueries({ queryKey: ['/api/goals'], refetchType: 'all' });
-      toast({
-        title: "Workout Added!",
-        description: "Your workout has been successfully logged.",
-      });
-      form.reset({
-        exerciseType: "",
-        duration: 0,
-        calories: 0,
-        intensity: "medium",
-        date: new Date().toISOString().split("T")[0],
-        notes: "",
-      });
-      setSelectedIntensity("");
-    },
+  // Force fresh data fetch by removing from cache first
+  queryClient.removeQueries({ queryKey: ['/api/workouts'] });
+  queryClient.removeQueries({ queryKey: ['/api/workouts/weekly'] });
+  queryClient.removeQueries({ queryKey: ['/api/goals'] });
+  
+  // Then refetch fresh data
+  queryClient.invalidateQueries({ queryKey: ['/api/workouts'] });
+  queryClient.invalidateQueries({ queryKey: ['/api/workouts/weekly'] });
+  queryClient.invalidateQueries({ queryKey: ['/api/goals'] });
+  
+  toast({
+    title: "Workout Added!",
+    description: "Your workout has been successfully logged.",
+  });
+  form.reset({
+    exerciseType: "",
+    duration: 0,
+    calories: 0,
+    intensity: "medium",
+    date: new Date().toISOString().split("T")[0],
+    notes: "",
+  });
+  setSelectedIntensity("");
+},
     onError: () => {
       toast({
         title: "Error",
