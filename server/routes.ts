@@ -30,7 +30,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message: "Registration successful", 
         user: { id: result.user.id, username: result.user.username }
       });
-    } catch (err) {
+    } catch (error) {
       res.status(500).json({ message: "Registration failed" });
     }
   });
@@ -61,7 +61,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         message: "Login successful", 
         user: { id: user.id, username: user.username }
       });
-    } catch (err) {
+    } catch (error) {
       res.status(500).json({ message: "Login failed" });
     }
   });
@@ -75,46 +75,55 @@ export async function registerRoutes(app: Express): Promise<Server> {
     });
   });
 
-  app.get("/api/auth/user", ensureUserSession, (req, res) => {
-    const authReq = req as AuthenticatedRequest;
-    res.json({ 
-      isGuest: authReq.isGuest, 
-      userId: authReq.userId 
-    });
+  app.get("/api/auth/user", ensureUserSession, async (req, res) => {
+    try {
+      const authReq = req as AuthenticatedRequest;
+      
+      if (authReq.isGuest) {
+        return res.json({ 
+          isGuest: true, 
+          userId: authReq.userId,
+          user: null
+        });
+      }
+      
+      const user = await storage.getUser(authReq.userId);
+      res.json({ 
+        isGuest: false, 
+        userId: authReq.userId,
+        user: user ? { id: user.id, username: user.username } : null
+      });
+    } catch (error) {
+      res.status(500).json({ message: "Failed to get user info" });
+    }
   });
-
-  // Workout routes
+  
+  // Workouts endpoints
   app.get("/api/workouts", ensureUserSession, async (req, res) => {
     try {
       const authReq = req as AuthenticatedRequest;
-      const userId = authReq.userId;
-      const workouts = await storage.getWorkouts(userId);
+      const workouts = await storage.getWorkouts(authReq.userId);
       res.json(workouts);
-    } catch (err) {
+    } catch (error) {
       res.status(500).json({ message: "Failed to fetch workouts" });
     }
   });
 
-  app.post("/api/workouts", ensureUserSession, async (req, res) => {
+  app.post("/api/workouts", (req, res, next) => {
+    console.log("=== POST /api/workouts HIT ===");
+    console.log("Body:", req.body);
+    next();
+  }, ensureUserSession, async (req, res) => {
     try {
-      console.log("=== POST /api/workouts HIT ===");
-      console.log("Body:", req.body);
-      
       const authReq = req as AuthenticatedRequest;
-      const userId = authReq.userId;
-      console.log("POST - User ID:", userId);
-      
       console.log("Received workout data:", req.body);
       const validatedData = insertWorkoutSchema.parse(req.body);
       console.log("Validated workout data:", validatedData);
-      
-      const workout = await storage.createWorkout(userId, validatedData);
-      console.log("Created workout:", workout);
-      
+      const workout = await storage.createWorkout(authReq.userId, validatedData);
       res.json(workout);
-    } catch (err) {
-      console.error("Workout creation error:", err);
-      res.status(400).json({ message: "Invalid workout data", error: err instanceof Error ? err.message : String(err) });
+    } catch (error: any) {
+      console.error("Workout validation error:", error);
+      res.status(400).json({ message: "Invalid workout data", error: error.message });
     }
   });
 
@@ -127,7 +136,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Workout not found" });
       }
       res.json(workout);
-    } catch (err) {
+    } catch (error) {
       res.status(400).json({ message: "Failed to update workout" });
     }
   });
@@ -136,8 +145,6 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const authReq = req as AuthenticatedRequest;
       const userId = authReq.userId;
-      console.log("WEEKLY - User ID:", userId);
-      
       const now = new Date();
       
       // Get start of current week (Monday) - more robust timezone handling
@@ -157,10 +164,8 @@ export async function registerRoutes(app: Express): Promise<Server> {
       
       const workouts = await storage.getWorkoutsByDateRange(userId, startDate, endDate);
       console.log(`Found workouts: ${workouts.length}`);
-      console.log("Workouts:", workouts.map(w => ({ id: w.id, date: w.date, userId: w.userId })));
-      
       res.json(workouts);
-    } catch (err) {
+    } catch (error) {
       res.status(500).json({ message: "Failed to fetch weekly workouts" });
     }
   });
@@ -170,7 +175,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
     try {
       const exercises = await storage.getExercises();
       res.json(exercises);
-    } catch (err) {
+    } catch (error) {
       res.status(500).json({ message: "Failed to fetch exercises" });
     }
   });
@@ -180,7 +185,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertExerciseSchema.parse(req.body);
       const exercise = await storage.createExercise(validatedData);
       res.json(exercise);
-    } catch (err) {
+    } catch (error) {
       res.status(400).json({ message: "Invalid exercise data" });
     }
   });
@@ -192,7 +197,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const userId = authReq.userId;
       const goals = await storage.getGoals(userId);
       res.json(goals);
-    } catch (err) {
+    } catch (error) {
       res.status(500).json({ message: "Failed to fetch goals" });
     }
   });
@@ -204,7 +209,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
       const validatedData = insertGoalSchema.parse(req.body);
       const goal = await storage.createGoal(userId, validatedData);
       res.json(goal);
-    } catch (err) {
+    } catch (error) {
       res.status(400).json({ message: "Invalid goal data" });
     }
   });
@@ -218,7 +223,7 @@ export async function registerRoutes(app: Express): Promise<Server> {
         return res.status(404).json({ message: "Goal not found" });
       }
       res.json(goal);
-    } catch (err) {
+    } catch (error) {
       res.status(400).json({ message: "Failed to update goal" });
     }
   });
